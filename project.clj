@@ -1,11 +1,11 @@
-(defproject fractals "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+(defproject fractals "0.1.0"
+  :description "fractals"
+  :url "fractals"
+  :license {:name "fractals"
+            :url "fractals"}
 
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.671" :scope "provided"]
+  :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
+                 [org.clojure/clojurescript "1.9.908" :scope "provided"]
                  [com.cognitect/transit-clj "0.8.300"]
                  [ring "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
@@ -17,7 +17,9 @@
                  [org.danielsz/system "0.4.0"]
                  [org.clojure/tools.namespace "0.2.11"]
                  [http-kit "2.2.0"]
-                 [rum "0.10.8"]]
+                 [rum "0.10.8"]
+                 [org.clojure/test.check "0.10.0-alpha2"]
+                 [com.datomic/datomic-free "0.9.5561.54" :exclusions [com.google.guava/guava]]]
 
   :plugins [[lein-cljsbuild "1.1.6"]
             [lein-environ "1.1.0"]]
