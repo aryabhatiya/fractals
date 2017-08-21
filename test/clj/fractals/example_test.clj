@@ -14,9 +14,6 @@
   (prop/for-all [v (gen/vector gen/int)]
                 (= (sort v) (sort (sort v)))))
 
-(defspec prop-sorted-first-less-than-last
-  100
-  (prop/for-all [v (gen/not-empty (gen/vector gen/int))]))
 
 (s/conform even? 1000)
 
