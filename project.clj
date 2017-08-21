@@ -58,8 +58,8 @@
                 :source-paths ["src/cljs" "test/cljs" "src/cljc" "test/cljc"]
                 :compiler {:output-to "resources/public/js/compiled/testable.js"
                            :main fractals.test-runner
-                           :process-shim false
-                           :optimizations :none}}
+                           :optimizations :none
+                           :process-shim false}}
 
                {:id "min"
                 :source-paths ["src/cljs" "src/cljc"]
@@ -101,14 +101,14 @@
   :doo {:build "test"}
 
   :profiles {:dev
-             {:dependencies [[figwheel "0.5.11"]
-                             [figwheel-sidecar "0.5.11"]
+             {:dependencies [[figwheel "0.5.13"]
+                             [figwheel-sidecar "0.5.13"]
                              [com.cemerick/piggieback "0.2.2"]
                              [org.clojure/tools.nrepl "0.2.13"]
                              [lein-doo "0.1.7"]
                              [reloaded.repl "0.2.3"]]
 
-              :plugins [[lein-figwheel "0.5.11"]
+              :plugins [[lein-figwheel "0.5.13"]
                         [lein-doo "0.1.7"]]
 
               :source-paths ["dev"]
