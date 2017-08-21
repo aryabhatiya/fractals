@@ -91,6 +91,11 @@ git push heroku master:master
 heroku open
 #+END_SRC
 
+*** Result
+| https://pacific-earth-90914.herokuapp.com/     |
+| https://git.heroku.com/pacific-earth-90914.git |
+
+
 *** Running with Foreman
 
 Heroku uses [Foreman](http://ddollar.github.io/foreman/) to run your
