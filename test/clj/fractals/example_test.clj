@@ -14,12 +14,9 @@
   (prop/for-all [v (gen/vector gen/int)]
                 (= (sort v) (sort (sort v)))))
 
-(tc/quick-check 100 sort-idempotent-prop)
-
-(def prop-sorted-first-less-than-last
+(defspec prop-sorted-first-less-than-last
+  100
   (prop/for-all [v (gen/not-empty (gen/vector gen/int))]))
-
-(tc/quick-check 100 prop-sorted-first-less-than-last)
 
 (s/conform even? 1000)
 
