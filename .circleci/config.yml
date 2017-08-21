@@ -3,11 +3,11 @@
 # Check https://circleci.com/docs/2.0/language-clojure/ for more details
 #
 
-version: 2
 machine:
   pre:
     - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
 
+version: 2
 jobs:
   build:
     docker:
