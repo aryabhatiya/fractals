@@ -58,6 +58,7 @@
                 :source-paths ["src/cljs" "test/cljs" "src/cljc" "test/cljc"]
                 :compiler {:output-to "resources/public/js/compiled/testable.js"
                            :main fractals.test-runner
+                           :process-shim false
                            :optimizations :none}}
 
                {:id "min"
