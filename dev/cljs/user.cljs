@@ -1,8 +1,8 @@
 (ns cljs.user
-  (:require [fractals.core]
-            [fractals.system :as system]))
+  (:require [fractals.core :as system]
+            ))
 
-(def go system/go)
+(def go system/main)
 (def reset system/reset)
-(def stop system/stop)
-(def start system/start)
+;;(def stop systema/stop)
+;;(def start system/start)

@@ -21,19 +21,6 @@
        (secretary/dispatch! (.-token event))))
     (.setEnabled true)))
 
-(defn app-routes []
-  (secretary/set-config! :prefix "#")
-
-  (defroute "/" []
-    (swap! app-state assoc :page :home))
-
-  (defroute "/about" []
-    (swap! app-state assoc :page :about))
-
-  ;; add routes here
-
-
-  (hook-browser-navigation!))
 
 (rum/defc greeting < rum/reactive [state]
   [:div
@@ -51,7 +38,35 @@
 
 
 (rum/defc current-page < rum/reactive [state]
-  ((page (:page (rum/react state)))))
+  (if (= (:page (rum/react state)) :home)
+    (greeting state)
+    (about)))
 
-(defn render []
+
+(defn dev-setup []
+  (when ^boolean js/goog.DEBUG
+    (enable-console-print!)
+    (println "dev mode")
+    ))
+
+(defn app-routes []
+  (secretary/set-config! :prefix "#")
+
+  (defroute "/" []
+    (swap! app-state assoc :page :home))
+
+  (defroute "/about" []
+    (swap! app-state assoc :page :about))
+
+  ;; add routes here
+
+
+  (hook-browser-navigation!))
+
+(defn reset []
   (rum/mount (current-page app-state) (. js/document (getElementById "app"))))
+
+(defn ^:export main []
+  (dev-setup)
+  (app-routes)
+  (reset))

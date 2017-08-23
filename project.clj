@@ -46,7 +46,7 @@
               [{:id "app"
                 :source-paths ["src/cljs" "src/cljc" "dev"]
 
-                :figwheel {:on-jsload "fractals.system/reset"}
+                :figwheel {:on-jsload "fractals.core/reset"}
 
                 :compiler {:main cljs.user
                            :asset-path "js/compiled/out"
