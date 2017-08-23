@@ -1,11 +1,12 @@
 (ns fractals.system
   (:require [com.stuartsierra.component :as component]
-            [fractals.components.ui :refer [new-ui-component]]))
+            [fractals.components.ui :refer [new-ui-component new-ui-route]]))
 
 (declare system)
 
 (defn new-system []
   (component/system-map
+   :app-route (new-ui-route)
    :app-root (new-ui-component)))
 
 (defn init []
