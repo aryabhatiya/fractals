@@ -23,19 +23,26 @@
 
 
 (rum/defc greeting < rum/reactive [state]
-  [:div
+  [:div {:style {:display :flex
+                 :flex-direction :column}}
    [:h1 (:text (rum/react state))]
-   [:a {:href "#/about"} "about page2"]])
+   [:a {:href "#/about"} "about page"]
+   [:a {:href "#/svg"} "svg test page"]])
 
 (rum/defc about < rum/reactive [state]
-  [:div [:h1 "About Page2"]
-   [:a {:href "#/"} "home page2"]])
+  [:div [:h1 "About Page"]
+   [:a {:href "#/"} "home page"]])
+
+(rum/defc svg-test < rum/reactive [state]
+  [:div [:h1 "Svg Page"]
+   [:a {:href "#/"} "home page"]])
 
 
 (rum/defc current-page < rum/reactive [state]
-  (if (= (:page (rum/react state)) :home)
-    (greeting state)
-    (about)))
+  (cond
+    (= (:page (rum/react state)) :home) (greeting state)
+    (= (:page (rum/react state)) :svg) (svg-test state)
+    (= (:page (rum/react state)) :about) (about state)))
 
 
 (defn dev-setup []
@@ -52,6 +59,9 @@
 
   (defroute "/about" []
     (swap! app-state assoc :page :about))
+
+  (defroute "/svg" []
+    (swap! app-state assoc :page :svg))
 
   ;; add routes here
 
