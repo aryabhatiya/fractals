@@ -44,14 +44,11 @@
   [:div [:h1 "About Page2"]
    [:a {:href "#/"} "home page3"]])
 
-(defmulti page identity)
-(defmethod page :home [] greeting)
-(defmethod page :about [] about)
-(defmethod page :default [] (fn [_] [:div]))
-
 
 (rum/defc current-page < rum/reactive [state]
-  ((page (:page (rum/react state)))))
+  (if (= (:page (rum/react state)) :about)
+    (about state)
+    (greeting state)))
 
 (defn render []
   (rum/mount (current-page app-state) (. js/document (getElementById "app"))))
