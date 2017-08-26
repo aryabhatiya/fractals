@@ -25,16 +25,11 @@
 (rum/defc greeting < rum/reactive [state]
   [:div
    [:h1 (:text (rum/react state))]
-   [:a {:href "#/about"} "about page4"]])
+   [:a {:href "#/about"} "about page2"]])
 
 (rum/defc about < rum/reactive [state]
   [:div [:h1 "About Page2"]
-   [:a {:href "#/"} "home page3"]])
-
-(defmulti page identity)
-(defmethod page :home [] greeting)
-(defmethod page :about [] about)
-(defmethod page :default [] (fn [_] [:div]))
+   [:a {:href "#/"} "home page2"]])
 
 
 (rum/defc current-page < rum/reactive [state]
