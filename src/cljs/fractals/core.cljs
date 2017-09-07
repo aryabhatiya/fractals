@@ -2,6 +2,7 @@
   (:require-macros [secretary.core :refer [defroute]])
   (:import goog.History)
   (:require [rum.core :as rum]
+            [fractals.svg :as svg]
             [secretary.core :as secretary]
             [goog.events :as events]
             [goog.history.EventType :as EventType]))
@@ -33,15 +34,13 @@
   [:div [:h1 "About Page"]
    [:a {:href "#/"} "home page"]])
 
-(rum/defc svg-test < rum/reactive [state]
-  [:div [:h1 "Svg Page"]
-   [:a {:href "#/"} "home page"]])
+
 
 
 (rum/defc current-page < rum/reactive [state]
   (cond
     (= (:page (rum/react state)) :home) (greeting state)
-    (= (:page (rum/react state)) :svg) (svg-test state)
+    (= (:page (rum/react state)) :svg) (svg/svg-test state)
     (= (:page (rum/react state)) :about) (about state)))
 
 
