@@ -2,7 +2,7 @@
   (:require [rum.core :as rum]
             [clojure.string :as str]))
 
-(rum/defc element [i area bcolor color]
+(rum/defc element [state i area bcolor color]
   [:div {:key (str "lyout" i)
          :style {
                  :grid-area area
@@ -14,24 +14,36 @@
                  :justify-content :center}}
    (str i)])
 
-(rum/defc board [i area bcolor color]
+(rum/defc board < rum/reactive [state i area bcolor color]
   [:div {:key (str "lyout" i)
          :style {
                  :grid-area area
                  :background-color bcolor
                  :color color
                  :display :grid
-                 :grid-template-columns (str/join " " (repeat 8 "1fr"))
-                 :grid-gap "1px"
+                 :grid-template-columns (str/join " "
+                                                  (repeat (:cols (rum/react state)) "1fr"))
+                 :grid-gap "4px"
                  }}
-   (map-indexed (fn [j e]
-                  [:div { :style {:display :flex
-                                 :justify-content :center
-                                 :background-color "#4E9A5D"
-                                 :align-items :center}} (str i " " j)])
-        (range 0 64))])
+   (map
+    (fn [[e area]]
+      (let [cell (get-in (rum/react state)
+                         e)
+            col (if cell (:zero-col (rum/react state))
+                    (:one-col (rum/react state)))]
+        [:div {:key (str  "board-" (str e))
+               :on-click #(swap! state assoc-in e (not cell) )
+               :style {:grid-area (str/join " / " area)
+                       :display :flex
+                       :justify-content :center
+                       :background-color col
+                       :align-items :center}}
+         ]))
+    (for [x (range 0 (:rows  (rum/react state)))
+          y (range 0 (:cols  (rum/react state)))]
+      [[:board x y] [(inc x) (inc y) (+ x 2) (+ y 2) ]]))])
 
-(rum/defc element-link [i area bcolor color]
+(rum/defc element-link [state i area bcolor color]
   [:div {:key (str "lyout" i)
          :style {
                  :grid-area area
@@ -56,7 +68,7 @@
 (defn font [size & fonts]
   (str size " " (str/join ", " fonts)))
 
-(rum/defc layout []
+(rum/defc layout [state]
   (let [colors
         ["#105B63"
          "#FFD34E"
@@ -92,9 +104,8 @@
     (map-indexed
      (fn [i [bcolor color area component]]
        (rum/with-key
-         (component i area bcolor color)
-         (str "compoent-" i))
-       )
+         (component state i area bcolor color)
+         (str "compoent-" i)))
      (take 5 (map (fn [u1 v1 size w h call-back]
                     [u1 v1 (clojure.string/join
                             " / "
