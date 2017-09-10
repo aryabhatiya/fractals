@@ -1,0 +1,11 @@
+Send your CV to career@circlefintech.com or Click here to Email CV from MY BDJOBS account.
+1. Interested candidates should create an VUE app by using vuex, routing, multiple page transition and then create a bin at https://www.webpackbin.com.
+2. Applicants are requested to share the link with resume.
+3. Any resume without solution link will be discarded.
+
+
+Send your CV to career@circlefintech.com or Click here to Email CV from MY BDJOBS account.
+1. Interested candidates should solve the problems at https://goo.gl/iZgB7G using https://repl.it/languages/python3 or https://www.tutorialspoint.com/execute_python_online.php or any other online compiler and share it with us.
+2. The candidate must use Python 3 to solve the problems.
+3. Applicants are requested to send the solution link from ideone with resume.
+4. Any resume without solution link will be discarded.
