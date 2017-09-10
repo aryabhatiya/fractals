@@ -354,7 +354,7 @@
                     :background-color "#4A3356"
                     :color "#D9C9BA"}}
       [:div "Shama Ar Rashid"]
-      [:div "Director Engineering"]
-      [:div "shama@gmail.com"]]]
+      [:div "Director Engineering, SGC Global"]
+      [:div "shama.rashid@gmail.com"]]]
     [:div {:style {:padding "10px"
                    :font-size ".86rem"}} "I was born in Dhaka in 20th July 1986. I spend my childhood in many corners of Bangladesh. My father MD Gulam Kibria and My mother is Asia Akter, we are from district Netrokuna. I am married to Rezwanna Sharmin. We have two daughters"]]])
