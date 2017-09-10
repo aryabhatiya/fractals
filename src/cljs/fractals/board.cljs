@@ -60,7 +60,7 @@
                  :display :flex
                  :align-items :center
                  :justify-content :center}}
-   (str i)])
+   (svg/logo-shipment )])
 
 (rum/defc element-res < rum/reactive [state i area bcolor color]
   [:div {:key (str "lyout" i)
@@ -72,7 +72,7 @@
                  :display :flex
                  :align-items :center
                  :justify-content :center}}
-   (js/Math.pow 2 (- (:res (rum/react state)) 2))])
+   (js/Math.pow 2 (- (count (distinct (mapcat identity (init-field state)))) 2))])
 
 
 (defn update-dimetion [state r f]
@@ -183,7 +183,7 @@
                  :display :grid
                  :grid-gap "2px"
                  }}
-   (r-link "#/about" "Résumé" )
+   (r-link "#/" "Résumé" )
    (r-link "#/svg" "Login" )
    ])
 

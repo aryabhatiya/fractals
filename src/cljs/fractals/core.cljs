@@ -36,16 +36,16 @@
 
 (rum/defc greeting < rum/reactive [state]
   (board/layout state))
-
+;; (board/layout state)
 
 ;; font-family: 'Slabo 27px', serif;
 ;; font-family: 'Merriweather', serif;
 
 (rum/defc current-page < rum/reactive [state]
   (cond
-    (= (:page (rum/react state)) :home) (greeting state)
+    (= (:page (rum/react state)) :home) (about/about state)
     (= (:page (rum/react state)) :svg) (svg/svg-test state)
-    (= (:page (rum/react state)) :about) (about/about state)))
+    (= (:page (rum/react state)) :about) (greeting state)))
 
 
 (defn dev-setup []

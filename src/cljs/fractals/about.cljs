@@ -35,7 +35,7 @@
                   :font-size "1.4rem"
                   :padding "15px"
                   :backgroundColor "#333"}}
-    (r-link2 "#/"  "Show Demo" )
+    (r-link2 "#/about"  "Show Demo" )
     [:div {:style {:font-size "2.5rem"
                    :font-family "'Slabo 27px', serif"
                    :text-align :center
