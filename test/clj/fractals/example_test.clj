@@ -53,3 +53,56 @@
                 (let [s (sort v)]
                   (and (= (count v) (count s))
                        (ascending? s)))))
+
+
+(defn siblings [state [x y]]
+  (let [dx [  0 0 -1 1]
+        dy [ -1 1  0 0]
+        dxy (mapv (fn [x1 y1] [(+ x x1)
+                               (+ y y1)] ) dx dy)
+        valid-dxy (filterv (fn [[x2 y2]]
+                             (and (>= x2 0)
+                                  (>= y2 0)
+                                  (< x2 (:rows state))
+                                  (< y2 (:cols state)))) dxy)
+        ]
+    (filterv (fn [[x3 y3]]
+               (get-in state [:board x3 y3]))
+             valid-dxy)))
+
+(defn init-field [state]
+  (let [rows (:rows @state)
+        cols (:cols @state)
+        board (:board @state)
+        xy (for [x (range 0 rows)
+                 y (range 0 cols)]
+             [x y])
+        max2 (range 0 (* rows cols))
+        max-field (reduce (fn [r [x y v]]
+                            (assoc-in r [x y] v))
+                          board
+                          (map (fn [[x y] m]
+                                 [x y m])  xy max2))]
+    (reduce (fn [r [x y]]
+              (assoc-in r [x y]
+                        (if (get-in @state [:board x y])
+                          (reduce
+                           (fn [min1 [sx1 sy1]]
+                             (if (< (get-in r [sx1 sy1])
+                                    min1)
+                               (get-in r [sx1 sy1])
+                               min1))
+                           (get-in r [x y])
+                           (siblings @state [x y])) -1)))
+            max-field xy)))
+
+(def app-state (atom {:text "Hello Chestnut!"
+                      :zero-col "#4E9A5D"
+                      :one-col "#88F9D4"
+                      :rows 3
+                      :cols 4
+                      :board [[true false false true]
+                              [false true false true]
+                              [false true false false]]}))
+
+(map #(clojure.string/join " " %) (init-field app-state))

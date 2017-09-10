@@ -1,8 +1,71 @@
 (ns fractals.board
   (:require [rum.core :as rum]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [fractals.svg :as svg]))
+
+
+(defn siblings [state [x y]]
+  (let [dx [  0 0 -1 1]
+        dy [ -1 1  0 0]
+        dxy (mapv (fn [x1 y1] [(+ x x1)
+                               (+ y y1)] ) dx dy)
+        valid-dxy (filterv (fn [[x2 y2]]
+                             (and (>= x2 0)
+                                  (>= y2 0)
+                                  (< x2 (:rows state))
+                                  (< y2 (:cols state)))) dxy)
+        ]
+    (filterv (fn [[x3 y3]]
+               (get-in state [:board x3 y3]))
+             valid-dxy)))
+
+(defn init-field [state]
+  (let [rows (:rows @state)
+        cols (:cols @state)
+        board (:board @state)
+        xy (for [x (range 0 rows)
+                 y (range 0 cols)]
+             [x y])
+        max2 (range 0 (* rows cols))
+        max-field (reduce (fn [r [x y v]]
+                            (assoc-in r [x y] v))
+                          board
+                          (map (fn [[x y] m]
+                                 [x y m])  xy max2))]
+    (reduce (fn [r [x y]]
+              (assoc-in r [x y]
+                        (if (get-in @state [:board x y])
+                          (reduce
+                           (fn [min1 [sx1 sy1]]
+                             (if (< (get-in r [sx1 sy1])
+                                    min1)
+                               (get-in r [sx1 sy1])
+                               min1))
+                           (get-in r [x y])
+                           (siblings @state [x y])) -1)))
+            max-field xy)))
+
+(defn init-board [state]
+  (let [rows (:rows @state)
+        cols (:cols @state)]
+    (vec (take rows (repeat (vec (take cols (repeat false))))))))
 
 (rum/defc element [state i area bcolor color]
+  [:div {:key (str "lyout" i)
+         :style {
+                 :grid-area area
+                 :background-color bcolor
+                 :color color
+                 :font-size "2rem"
+                 :display :flex
+                 :align-items :center
+                 :justify-content :center}}
+   (str i)])
+
+
+
+
+(rum/defc control < rum/reactive [state i area bcolor color]
   [:div {:key (str "lyout" i)
          :style {
                  :grid-area area
@@ -11,8 +74,43 @@
                  :font-size "26px"
                  :display :flex
                  :align-items :center
+                 :flex-direction :column
                  :justify-content :center}}
-   (str i)])
+   [:div {:style {:display :flex}}
+    [:div {:style {:background-color "#D9C9BA"}
+           :on-click #(do
+                        (swap! state update-in [:rows] dec)
+                        (swap! state assoc :board (init-board state)))}
+     (svg/logo-lt)]
+    [:input  {:type "text"
+              :style {:width "80px"
+                      :height "40px"
+                      :text-align :center
+                      :font-size "2rem"}
+              :value (:rows (rum/react state))}]
+    [:div {:style {:background-color "#D9C9BA"}
+           :on-click #(do (swap! state update-in [:rows] inc)
+                          (swap! state assoc :board (init-board state)))}
+     (svg/logo-gt)]]
+   [:div {:style {:display :flex}}
+    [:div {:style {:background-color "#D9C9BA"}
+           :on-click #(do
+                        (swap! state update-in [:cols] dec)
+                        (swap! state assoc :board (init-board state)))}
+     (svg/logo-lt)]
+    [:input  {:type "text"
+              :style {:width "80px"
+                      :height "40px"
+                      :text-align :center
+                      :font-size "2rem"}
+              :value (:cols (rum/react state))}]
+    [:div {:style {:background-color "#D9C9BA"}
+           :on-click #(do
+                        (swap! state update-in [:cols] inc)
+                        (swap! state assoc :board (init-board state)))}
+     (svg/logo-gt)]]])
+
+
 
 (rum/defc board < rum/reactive [state i area bcolor color]
   [:div {:key (str "lyout" i)
@@ -43,6 +141,25 @@
           y (range 0 (:cols  (rum/react state)))]
       [[:board x y] [(inc x) (inc y) (+ x 2) (+ y 2) ]]))])
 
+(rum/defcs r-link < (rum/local "#333333" ::bg ) (rum/local "#F1F3F5" ::cl)
+  [state link name]
+  (let [local-backgroud (::bg state)
+        local-color (::cl state)]
+    [:a {:on-mouse-enter #(do
+                            (reset! local-color "#333333")
+                            (reset! local-backgroud "#F1F3F5"))
+         :on-mouse-leave #(do
+                            (reset! local-color "#F1F3F5")
+                            (reset! local-backgroud "#333333"))
+         :style {:display :flex
+                 :color @local-color
+                 :justify-content :center
+                 :align-items :center
+                 :text-decoration :none
+                 :font-size "1.4rem"
+                 :background-color @local-backgroud}
+         :href link} name]))
+
 (rum/defc element-link [state i area bcolor color]
   [:div {:key (str "lyout" i)
          :style {
@@ -50,11 +167,12 @@
                  :background-color bcolor
                  :color color
                  :font-size "1.2rem"
-                 :display :flex
-                 :flex-direction :column
+                 :display :grid
+                 :grid-gap "2px"
                  }}
-   [:a {:href "#/about"} "Résumé"]
-   [:a {:href "#/svg"} "svg test page"]])
+   (r-link "#/about" "Résumé" )
+   (r-link "#/svg" "Login" )
+   ])
 
 (def rgba #(str "rgba"  "(" (str %1) "," (str %2) "," (str  %3) "," (str %4) ")" ))
 (def rgb #(str "rgb"  "(" (str %1) "," (str %2) "," (str  %3) ")" ))
@@ -119,4 +237,4 @@
                   (cycle [   5 3  2 1 1 ])
                   (cycle [   8 3  2 3 3 ])
                   (cycle [   5 5  2 1 0 ])
-                  (cycle [board element element element-link element]))))]))
+                  (cycle [board control element element-link element]))))]))
