@@ -62,6 +62,23 @@
                  :justify-content :center}}
    (str i)])
 
+(rum/defc element-res < rum/reactive [state i area bcolor color]
+  [:div {:key (str "lyout" i)
+         :style {
+                 :grid-area area
+                 :background-color bcolor
+                 :color color
+                 :font-size "2rem"
+                 :display :flex
+                 :align-items :center
+                 :justify-content :center}}
+   (js/Math.pow 2 (- (:res (rum/react state)) 2))])
+
+
+(defn update-dimetion [state r f]
+  (swap! state update-in [r] f)
+  (swap! state assoc :board (init-board state)))
+
 
 
 
@@ -78,9 +95,7 @@
                  :justify-content :center}}
    [:div {:style {:display :flex}}
     [:div {:style {:background-color "#D9C9BA"}
-           :on-click #(do
-                        (swap! state update-in [:rows] dec)
-                        (swap! state assoc :board (init-board state)))}
+           :on-click #(update-dimetion state :rows dec)}
      (svg/logo-lt)]
     [:input  {:type "text"
               :style {:width "80px"
@@ -89,14 +104,11 @@
                       :font-size "2rem"}
               :value (:rows @state)}]
     [:div {:style {:background-color "#D9C9BA"}
-           :on-click #(do (swap! state update-in [:rows] inc)
-                          (swap! state assoc :board (init-board state)))}
+           :on-click #(update-dimetion state :rows inc)}
      (svg/logo-gt)]]
    [:div {:style {:display :flex}}
     [:div {:style {:background-color "#D9C9BA"}
-           :on-click #(do
-                        (swap! state update-in [:cols] dec)
-                        (swap! state assoc :board (init-board state)))}
+           :on-click #(update-dimetion state :cols dec)}
      (svg/logo-lt)]
     [:input  {:type "text"
               :style {:width "80px"
@@ -105,9 +117,7 @@
                       :font-size "2rem"}
               :value (:cols @state)}]
     [:div {:style {:background-color "#D9C9BA"}
-           :on-click #(do
-                        (swap! state update-in [:cols] inc)
-                        (swap! state assoc :board (init-board state)))}
+           :on-click #(update-dimetion state :cols inc)}
      (svg/logo-gt)]]])
 
 
@@ -130,7 +140,10 @@
             col (if cell (:zero-col @state)
                     (:one-col @state))]
         [:div {:key (str  "board-" (str e))
-               :on-click #(swap! state assoc-in e (not cell) )
+               :on-click #(do
+                            (swap! state assoc-in e (not cell) )
+                            (swap! state assoc-in [:res]
+                                   (count (distinct (mapcat identity (init-field state))))))
                :style {:grid-area (str/join " / " area)
                        :display :flex
                        :justify-content :center
@@ -237,4 +250,4 @@
                   (cycle [   5 3  2 1 1 ])
                   (cycle [   8 3  2 3 3 ])
                   (cycle [   5 5  2 1 0 ])
-                  (cycle [board control element element-link element]))))]))
+                  (cycle [board control element-res element-link element]))))]))

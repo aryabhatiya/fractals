@@ -17,6 +17,7 @@
                           :one-col "#88F9D4"
                           :rows 3
                           :cols 4
+                          :res 0
                           :board [[true false false true]
                                   [false true false true]
                                   [false true false false]]}))
