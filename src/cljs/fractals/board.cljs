@@ -87,7 +87,7 @@
                       :height "40px"
                       :text-align :center
                       :font-size "2rem"}
-              :value (:rows (rum/react state))}]
+              :value (:rows @state)}]
     [:div {:style {:background-color "#D9C9BA"}
            :on-click #(do (swap! state update-in [:rows] inc)
                           (swap! state assoc :board (init-board state)))}
@@ -103,7 +103,7 @@
                       :height "40px"
                       :text-align :center
                       :font-size "2rem"}
-              :value (:cols (rum/react state))}]
+              :value (:cols @state)}]
     [:div {:style {:background-color "#D9C9BA"}
            :on-click #(do
                         (swap! state update-in [:cols] inc)
@@ -120,15 +120,15 @@
                  :color color
                  :display :grid
                  :grid-template-columns (str/join " "
-                                                  (repeat (:cols (rum/react state)) "1fr"))
+                                                  (repeat (:cols @state) "1fr"))
                  :grid-gap "4px"
                  }}
    (map
     (fn [[e area]]
-      (let [cell (get-in (rum/react state)
+      (let [cell (get-in @state
                          e)
-            col (if cell (:zero-col (rum/react state))
-                    (:one-col (rum/react state)))]
+            col (if cell (:zero-col @state)
+                    (:one-col @state))]
         [:div {:key (str  "board-" (str e))
                :on-click #(swap! state assoc-in e (not cell) )
                :style {:grid-area (str/join " / " area)
@@ -137,8 +137,8 @@
                        :background-color col
                        :align-items :center}}
          ]))
-    (for [x (range 0 (:rows  (rum/react state)))
-          y (range 0 (:cols  (rum/react state)))]
+    (for [x (range 0 (:rows @state))
+          y (range 0 (:cols @state))]
       [[:board x y] [(inc x) (inc y) (+ x 2) (+ y 2) ]]))])
 
 (rum/defcs r-link < (rum/local "#333333" ::bg ) (rum/local "#F1F3F5" ::cl)
