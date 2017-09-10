@@ -89,7 +89,7 @@
       [:div
        [:div {:style {:font-size "1.1rem"
                       :padding-top "10px"}}
-        "Technical Lead"]
+        "Senior Software Engineer"]
        [:div {:style {:padding "10px"
                       :color "#666"
                       :font-size ".85rem"}}
@@ -327,5 +327,34 @@
         [:div "Testing"]
         [:div "CircleCi"]]
        ])]
-
-    ]])
+    [:div {:style {:font-size "1.4rem"
+                   :color "#fff"
+                   :padding "10px"
+                   :background-color "rgb(41,73,130)"
+                   :font-weight 500}}
+     "Education & Recommendations"]
+    [:div
+     [:div {:style {:padding "10px"
+                    :font-size ".86rem"}} "I have my BSC  in Computer Engineering from American International University - Bangladesh."]
+     [:div {:style {:padding "10px"
+                    :font-size ".86rem"}} "I was programming contest in national lavel and
+   My final project was - Design 32-bit processor using MISPs
+  instruction on Xlink FPGA"]
+     ]
+    [:div {:style {:padding "10px"
+                   :display :flex
+                   :justify-content :space-around}}
+     [:div {:style {:padding "10px"
+                    :color "#4B4D5A"
+                    :background-color "#7D889C"}}
+      [:div "M. Mamunuzzaman"]
+      [:div "CEO SGC Global"]
+      [:div "mamunuzzaman@sgcglobal.com"]]
+     [:div {:style {:padding "10px"
+                    :background-color "#4A3356"
+                    :color "#D9C9BA"}}
+      [:div "Shama Ar Rashid"]
+      [:div "Director Engineering"]
+      [:div "shama@gmail.com"]]]
+    [:div {:style {:padding "10px"
+                   :font-size ".86rem"}} "I was born in Dhaka in 20th July 1986. I spend my childhood in many corners of Bangladesh. My father MD Gulam Kibria and My mother is Asia Akter, we are from district Netrokuna. I am married to Rezwanna Sharmin. We have two daughters"]]])
