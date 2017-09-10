@@ -8,6 +8,8 @@
             [secretary.core :as secretary]
             [clojure.string :as str]
             [goog.events :as events]
+            [cljs.reader :as reader]
+            [cognitect.transit :as transit]
             [goog.history.EventType :as EventType]))
 
 (enable-console-print!)

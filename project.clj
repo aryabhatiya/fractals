@@ -18,6 +18,7 @@
                  [org.clojure/tools.namespace "0.2.11"]
                  [http-kit "2.2.0"]
                  [rum "0.10.8"]
+                 [com.cognitect/transit-cljs "0.8.239"]
                  [org.clojure/test.check "0.10.0-alpha2"]
                  [com.datomic/datomic-free "0.9.5561.54" :exclusions [com.google.guava/guava]]]
 
