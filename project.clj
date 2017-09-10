@@ -64,7 +64,7 @@
                {:id "min"
                 :source-paths ["src/cljs" "src/cljc"]
                 :jar true
-                :compiler {:main fractals.system
+                :compiler {:main fractals.core
                            :output-to "resources/public/js/compiled/fractals.js"
                            :output-dir "target"
                            :source-map-timestamp true

@@ -2,6 +2,25 @@
   (:require [rum.core :as rum]
             [fractals.svg :as svg]))
 
+(rum/defcs r-link2 < (rum/local "#333333" ::cl ) (rum/local "#F1F3F5" ::bg)
+  [state link name]
+  (let [local-backgroud (::bg state)
+        local-color (::cl state)]
+    [:a {:on-mouse-leave #(do
+                            (reset! local-color "#333333")
+                            (reset! local-backgroud "#F1F3F5"))
+         :on-mouse-enter #(do
+                            (reset! local-color "#F1F3F5")
+                            (reset! local-backgroud "#333333"))
+         :style {:display :flex
+                 :color @local-color
+                 :justify-content :center
+                 :align-items :center
+                 :text-decoration :none
+                 :font-size "1.4rem"
+                 :background-color @local-backgroud}
+         :href link} name]))
+
 (rum/defc about < rum/reactive [state]
   [:div {:style {:font "1em/1.4 Roboto, \"Helvetica Neue\", Helvetica, Arial, sans-serif"
                  :margin "0 auto"
@@ -16,6 +35,7 @@
                   :font-size "1.4rem"
                   :padding "15px"
                   :backgroundColor "#333"}}
+    (r-link2 "#/"  "Show Demo" )
     [:div {:style {:font-size "2.5rem"
                    :font-family "'Slabo 27px', serif"
                    :text-align :center
@@ -308,4 +328,4 @@
         [:div "CircleCi"]]
        ])]
 
-    [:a {:href "#/"} "home page"]]])
+    ]])
