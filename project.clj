@@ -6,7 +6,6 @@
 
   :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
                  [org.clojure/clojurescript "1.9.908" :scope "provided"]
-                 [com.cognitect/transit-clj "0.8.300"]
                  [ring "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
                  [bk/ring-gzip "0.2.1"]
@@ -18,7 +17,6 @@
                  [org.clojure/tools.namespace "0.2.11"]
                  [http-kit "2.2.0"]
                  [rum "0.10.8"]
-                 [com.cognitect/transit-cljs "0.8.239"]
                  [org.clojure/test.check "0.10.0-alpha2"]
                  [com.datomic/datomic-free "0.9.5561.54" :exclusions [com.google.guava/guava]]]
 
@@ -28,7 +26,6 @@
   :min-lein-version "2.6.1"
 
   :source-paths ["src/clj" "src/cljs" "src/cljc"]
-
   :test-paths ["test/clj" "test/cljc"]
 
   :clean-targets ^{:protect false} [:target-path :compile-path "resources/public/js"]

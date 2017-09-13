@@ -1,18 +1,24 @@
 (ns fractals.core
   (:require-macros [secretary.core :refer [defroute]])
   (:import goog.History)
-  (:require [rum.core :as rum]
-            [fractals.svg :as svg]
-            [fractals.about :as about]
-            [fractals.board :as board]
-            [secretary.core :as secretary]
-            [clojure.string :as str]
-            [goog.events :as events]
-            [cljs.reader :as reader]
-            [cognitect.transit :as transit]
-            [goog.history.EventType :as EventType]))
+  (:require
+   [datascript.core :as d]
+   [rum.core :as rum]
+   [fractals.svg :as svg]
+   [fractals.about :as about]
+   [fractals.board :as board]
+   [secretary.core :as secretary]
+   [clojure.string :as str]
+   [goog.events :as events]
+   [cljs.reader :as reader]
+   [goog.history.EventType :as EventType]))
 
 (enable-console-print!)
+
+(def schema {:todo/tags {:db/cardinality :db.cardinality/many}
+             :todo/project {:db/valueType :db.type/ref}})
+(defonce conn (d/create-conn schema))
+
 
 (defonce app-state (atom {:text "Hello Chestnut!"
                           :zero-col "#4E9A5D"
@@ -23,6 +29,13 @@
                           :board [[true false false true]
                                   [false true false true]
                                   [false true false false]]}))
+
+(def ws (js/WebSocket. (str "ws://" js/location.hostname ":" js/location.port "/ws" )))
+
+(aset ws "onopen" (fn [event]
+                    (.send ws "hello world")))
+(aset ws "onmessage" (fn [event]
+                       (swap! app-state assoc :ws-text (.-data event))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -56,17 +69,18 @@
     (println "dev mode")
     ))
 
+
 (defn app-routes []
   (secretary/set-config! :prefix "#")
 
   (defroute "/" []
-    (swap! app-state assoc :page :home))
+    (d/transact! conn [{:page/current :root}]))
 
   (defroute "/about" []
-    (swap! app-state assoc :page :about))
+    (d/transact! conn [{:page/current :about}]))
 
   (defroute "/svg" []
-    (swap! app-state assoc :page :svg))
+    (d/transact! conn [{:page/current :svg}]))
 
   ;; add routes here
 
@@ -75,6 +89,10 @@
 
 (defn reset []
   (rum/mount (current-page app-state) (. js/document (getElementById "app"))))
+
+;; (d/listen! conn :render
+;;            (fn [tx-report]
+;;              (reset)))
 
 (defn ^:export main []
   (dev-setup)

@@ -21,20 +21,12 @@
                  :background-color @local-backgroud}
          :href link} name]))
 
-(rum/defc about < rum/reactive [state]
-  [:div {:style {:font "1em/1.4 Roboto, \"Helvetica Neue\", Helvetica, Arial, sans-serif"
-                 :margin "0 auto"
-                 :width "90%"
-                 :backgroundColor "#fafafa"
-                 :max-width "900px"
-                 :display :grid
-                 :grid-template-columns "1fr 3fr"
-                 :grid-gap "20px"}}
-   [:div {:style {:grid-column 1
-                  :color "#fff"
-                  :font-size "1.4rem"
-                  :padding "15px"
-                  :backgroundColor "#333"}}
+(rum/defc first-site < rum/reactive [state]
+  [:div {:style {:grid-column 1
+                 :color "#fff"
+                 :font-size "1.4rem"
+                 :padding "15px"
+                 :backgroundColor "#333"}}
     (r-link2 "#/about"  "Show Demo" )
     [:div {:style {:font-size "2.5rem"
                    :font-family "'Slabo 27px', serif"
@@ -66,8 +58,10 @@
        "ullstack developeing experience on mobile & IOT."]
       [:div "Rapid developement with great reliability"]
 
-      [:div "Devops.. friendl" [:span {:style {:font-size "3rem"}} "y”"] ] ]]]
-   [:div {:style {:font-family "'Merriweather', serif"}}
+      [:div "Devops.. friendl" [:span {:style {:font-size "3rem"}} "y”"] ] ]]])
+
+(rum/defc middle-site < rum/reactive [state]
+  [:div {:style {:font-family "'Merriweather', serif"}}
     [:div {:style {:font-size "1.4rem"
                    :color "#fff"
                    :padding "10px"
@@ -102,7 +96,9 @@
                      :align-items :center
                      :padding "10px"
                      :font-size "1rem"}}
-       [:div  "Software Global Consultancy"]
+       [:a {:style {:color "#BFBFBF"
+                    :text-decoration :none}
+            :href "http://sgcsoft.net/"}  "Software Global Consultancy"]
        [:div  "SGC GLOBAL"]]
 
       ]
@@ -357,4 +353,53 @@
       [:div "Director Engineering, SGC Global"]
       [:div "shama.rashid@gmail.com"]]]
     [:div {:style {:padding "10px"
-                   :font-size ".86rem"}} "I was born in Dhaka in 20th July 1986. I spend my childhood in many corners of Bangladesh. My father MD Gulam Kibria and My mother is Asia Akter, we are from district Netrokuna. I am married to Rezwanna Sharmin. We have two daughters"]]])
+                   :font-size ".86rem"}} "I was born in Dhaka in 20th July 1986. I spend my childhood in many corners of Bangladesh. My father MD Gulam Kibria and My mother is Asia Akter, we are from district Netrokuna. I am married to Rezwanna Sharmin. We have two daughters"]])
+
+(rum/defc about < rum/reactive [state]
+  [:div {:style {:font "1em/1.4 Roboto, \"Helvetica Neue\", Helvetica, Arial, sans-serif"
+                 :margin "0 auto"
+                 :width "90%"
+                 :backgroundColor "#fafafa"
+                 :max-width "900px"
+                 :display :grid
+                 :grid-template-columns "1fr 3fr 1fr"
+                 :grid-gap "20px"}}
+   (first-site state)
+   (middle-site state)
+   [:div {:style {:color "#fff"
+                  :font-size "1.4rem"
+                  :padding "15px"
+                  :backgroundColor "#333"}}
+    [:div
+     [:input {:style {:background-color "#C6CEBE"
+                      :height "25px"
+                      :width "175px"}
+              :type "text"
+              :placeholder "New task"}]
+     [:input {:type "text"
+              :style {:background-color "#C6CEBE"
+                      :height "25px"
+                      :width "175px"}
+              :placeholder "Project"}]
+     [:input {:type "text"
+              :style {:background-color "#C6CEBE"
+                      :height "25px"
+                      :width "175px"}
+              :placeholder "Tags"}]
+     [:input {:type "text"
+              :style {:background-color "#C6CEBE"
+                      :height "25px"
+                      :width "175px"}
+              :placeholder "Due data"}]
+     [:input {:style {:background-color "#C6CEBE"
+                      :height "25px"
+                      :width "175px"}
+              :type "text"
+              :placeholder "Add task"}]
+     [:input {:style {:color "#fff"
+                      :background-color "#4A3356"
+                      :margin-top "5px"
+                      :font-size "1.2rem"
+                      :height "35px"
+                      :width "178px"}
+              :type "submit" :value "Add Task"}]]]])
