@@ -15,9 +15,6 @@
 
 (enable-console-print!)
 
-(def schema {:todo/tags {:db/cardinality :db.cardinality/many}
-             :todo/project {:db/valueType :db.type/ref}})
-(defonce conn (d/create-conn schema))
 
 
 (defonce app-state (atom {:text "Hello Chestnut!"
@@ -29,6 +26,16 @@
                           :board [[true false false true]
                                   [false true false true]
                                   [false true false false]]}))
+
+(def schema {:todo/tags {:db/cardinality :db.cardinality/many}
+             :todo/project {:db/valueType :db.type/ref}})
+
+(def conn (d/create-conn schema))
+
+(d/listen! conn :test #(do
+                         (js/console.log "state" (clj->js (:tx-data %)))
+                         (swap! app-state assoc :report %)))
+
 
 (def ws (js/WebSocket. (str "ws://" js/location.hostname ":" js/location.port "/ws" )))
 
@@ -46,6 +53,7 @@
     (events/listen
      EventType/NAVIGATE
      (fn [event]
+       (js/console.log (.-token event))
        (secretary/dispatch! (.-token event))))
     (.setEnabled true)))
 
@@ -66,7 +74,7 @@
 (defn dev-setup []
   (when ^boolean js/goog.DEBUG
     (enable-console-print!)
-    (println "dev mode")
+    (println "dev mode2")
     ))
 
 
@@ -74,25 +82,40 @@
   (secretary/set-config! :prefix "#")
 
   (defroute "/" []
-    (d/transact! conn [{:page/current :root}]))
+    (swap! app-state assoc :page :home))
 
   (defroute "/about" []
-    (d/transact! conn [{:page/current :about}]))
+    (swap! app-state assoc :page :about))
 
   (defroute "/svg" []
-    (d/transact! conn [{:page/current :svg}]))
+    (swap! app-state assoc :page :svg))
 
   ;; add routes here
 
 
   (hook-browser-navigation!))
 
+(defonce layout (atom 1000))
+
+(add-watch layout ::layout
+           (fn [_ _ _ w]
+             (swap! app-state assoc-in
+                    [:window :layout]
+                    (cond
+                      (and  (< w 1000) (> w 600)) :medium
+                      (< w 600 ) :swall
+                      :else :wide))))
+
+(js/window.addEventListener
+ "resize"
+ (fn [_]
+   (reset! layout js/window.innerWidth)))
+
+
+
+
 (defn reset []
   (rum/mount (current-page app-state) (. js/document (getElementById "app"))))
-
-;; (d/listen! conn :render
-;;            (fn [tx-report]
-;;              (reset)))
 
 (defn ^:export main []
   (dev-setup)

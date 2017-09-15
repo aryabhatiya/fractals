@@ -72,7 +72,14 @@
                  :display :flex
                  :align-items :center
                  :justify-content :center}}
-   (js/Math.pow 2 (- (count (distinct (mapcat identity (init-field state)))) 2))])
+   [:div
+    [:iframe {:type "text/html"
+              :width "100%"
+              :height "300px"
+              :src "https://www.youtube.com/embed/D6Ac5JpCHmI?&autoplay=1"
+              :allowFullScreen :true
+              :frameBorder 0}]
+    ]])
 
 
 (defn update-dimetion [state r f]
@@ -124,35 +131,36 @@
 
 (rum/defc board < rum/reactive [state i area bcolor color]
   [:div {:key (str "lyout" i)
-         :style {
-                 :grid-area area
-                 :background-color bcolor
-                 :color color
-                 :display :grid
-                 :grid-template-columns (str/join " "
-                                                  (repeat (:cols @state) "1fr"))
-                 :grid-gap "4px"
-                 }}
-   (map
-    (fn [[e area]]
-      (let [cell (get-in @state
-                         e)
-            col (if cell (:zero-col @state)
-                    (:one-col @state))]
-        [:div {:key (str  "board-" (str e))
-               :on-click #(do
-                            (swap! state assoc-in e (not cell) )
-                            (swap! state assoc-in [:res]
-                                   (count (distinct (mapcat identity (init-field state))))))
-               :style {:grid-area (str/join " / " area)
-                       :display :flex
-                       :justify-content :center
-                       :background-color col
-                       :align-items :center}}
-         ]))
-    (for [x (range 0 (:rows @state))
-          y (range 0 (:cols @state))]
-      [[:board x y] [(inc x) (inc y) (+ x 2) (+ y 2) ]]))])
+          :style {
+                  :grid-area area
+                  :background-color bcolor
+                  :color color
+                  :display :grid
+                  :grid-template-columns (str/join " "
+                                                   (repeat (:cols @state) "1fr"))
+                  :grid-gap "4px"
+                  }}
+
+    (map
+     (fn [[e area]]
+       (let [cell (get-in @state
+                          e)
+             col (if cell (:zero-col @state)
+                     (:one-col @state))]
+         [:div {:key (str  "board-" (str e))
+                :on-click #(do
+                             (swap! state assoc-in e (not cell) )
+                             (swap! state assoc-in [:res]
+                                    (count (distinct (mapcat identity (init-field state))))))
+                :style {:grid-area (str/join " / " area)
+                        :display :flex
+                        :justify-content :center
+                        :background-color col
+                        :align-items :center}}
+          ]))
+     (for [x (range 0 (:rows @state))
+           y (range 0 (:cols @state))]
+       [[:board x y] [(inc x) (inc y) (+ x 2) (+ y 2) ]]))])
 
 (rum/defcs r-link < (rum/local "#333333" ::bg ) (rum/local "#F1F3F5" ::cl)
   [state link name]
@@ -199,55 +207,62 @@
 (defn font [size & fonts]
   (str size " " (str/join ", " fonts)))
 
-(rum/defc layout [state]
-  (let [colors
-        ["#105B63"
-         "#FFD34E"
-         "#DB9E36"
-         "#BD4932"
-         "#FF6138"
-         "#FFFF9D"
-         "#BEEB9F"
-         "#79BD8F"
-         "#00A388"
-         "#105B63"]
-        font-colors
-        ["#7F7F7F"
-         "#404040"
-         "#333333"
-         "#BEA797"
-         "#D9C9BA"
-         "#F1F3F5"
-         "#4B4D5A"
-         "#686872"
-         "#BFBFBF"
-         "#333333"]]
-   [:div
-    {:style {:display :grid
-             :background-color "#FFFAD5"
-             :grid-template-columns (str/join " " (repeat 8 "1fr"))
-             :grid-template-rows (str/join " " (repeat 5 "19.8vh"))
-             :font (font "1em/1.4"
-                         "Roboto" "Helvetica Neue"
-                         "Helvetica", "Arial", "sans-serif")
-             ;; grid-auto-rows
-             :grid-gap ".2vh"}}
-    (map-indexed
-     (fn [i [bcolor color area component]]
-       (rum/with-key
-         (component state i area bcolor color)
-         (str "compoent-" i)))
-     (take 5 (map (fn [u1 v1 size w h call-back]
-                    [u1 v1 (clojure.string/join
-                            " / "
-                            [(inc (- h size))
-                             (inc (- w size))
-                             (inc h)
-                             (inc w) ])
-                     call-back])
-                  (cycle colors)
-                  (cycle font-colors)
-                  (cycle [   5 3  2 1 1 ])
-                  (cycle [   8 3  2 3 3 ])
-                  (cycle [   5 5  2 1 0 ])
-                  (cycle [board control element-res element-link element]))))]))
+(rum/defc layout < rum/reactive [state]
+  [:div
+   [:div {:style  {:background-color "#79BD8F"
+                   :display :flex
+                   :justify-content :space-around}}
+    [:div "width " (str (get-in (rum/react state) [:window :layout]))]
+    [:div
+     "total " (js/Math.pow 2 (- (count (distinct (mapcat identity (init-field state)))) 2))]]
+   (let [colors
+         ["#105B63"
+          "#FFD34E"
+          "#DB9E36"
+          "#BD4932"
+          "#FF6138"
+          "#FFFF9D"
+          "#BEEB9F"
+          "#79BD8F"
+          "#00A388"
+          "#105B63"]
+         font-colors
+         ["#7F7F7F"
+          "#404040"
+          "#333333"
+          "#BEA797"
+          "#D9C9BA"
+          "#F1F3F5"
+          "#4B4D5A"
+          "#686872"
+          "#BFBFBF"
+          "#333333"]]
+     [:div
+      {:style {:display :grid
+               :background-color "#FFFAD5"
+               :grid-template-columns (str/join " " (repeat 8 "1fr"))
+               :grid-template-rows (str/join " " (repeat 5 "19.8vh"))
+               :font (font "1em/1.4"
+                           "Roboto" "Helvetica Neue"
+                           "Helvetica", "Arial", "sans-serif")
+               ;; grid-auto-rows
+               :grid-gap ".2vh"}}
+      (map-indexed
+       (fn [i [bcolor color area component]]
+         (rum/with-key
+           (component state i area bcolor color)
+           (str "compoent-" i)))
+       (take 5 (map (fn [u1 v1 size w h call-back]
+                      [u1 v1 (clojure.string/join
+                              " / "
+                              [(inc (- h size))
+                               (inc (- w size))
+                               (inc h)
+                               (inc w) ])
+                       call-back])
+                    (cycle colors)
+                    (cycle font-colors)
+                    (cycle [   5 3  2 1 1 ])
+                    (cycle [   8 3  2 3 3 ])
+                    (cycle [   5 5  2 1 0 ])
+                    (cycle [board control element-res element-link element]))))])])

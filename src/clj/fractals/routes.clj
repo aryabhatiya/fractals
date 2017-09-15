@@ -16,12 +16,15 @@
                           (send! channel data)))))
 
 (defn home-routes [endpoint]
+  (println (:conn (:db endpoint)) )
+  (println (:schema (:db endpoint)) )
   (routes
-   (GET "/" _
-     (-> "public/index.html"
-         io/resource
-         io/input-stream
-         response
-         (assoc :headers {"Content-Type" "text/html; charset=utf-8"})))
+   (GET "/" [webkey]
+        (-> "public/index.html"
+            io/resource
+            io/input-stream
+            response
+            (assoc :headers
+                   {"Content-Type" "text/html; charset=utf-8"})))
    (GET "/ws" [] web-soc-handler)
    (resources "/")))

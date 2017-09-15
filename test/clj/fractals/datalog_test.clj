@@ -108,27 +108,27 @@
      {:db/ident :comment/author
       :db/valueType :db.type/ref
       :db/cardinality :db.cardinality/one}
-     { :db/ident :user/firstName
+     {:db/ident :user/firstName
       :db/index true
       :db/valueType :db.type/string
       :db/cardinality :db.cardinality/one}
-     { :db/ident :user/lastName
+     {:db/ident :user/lastName
       :db/index true
       :db/valueType :db.type/string
       :db/cardinality :db.cardinality/one}
-     { :db/ident :user/email
+     {:db/ident :user/email
       :db/index true
       :db/unique :db.unique/identity
       :db/valueType :db.type/string
       :db/cardinality :db.cardinality/one}
-     { :db/ident :user/passwordHash
+     {:db/ident :user/passwordHash
       :db/valueType :db.type/string
       :db/cardinality :db.cardinality/one}
-     { :db/ident :user/upVotes
+     {:db/ident :user/upVotes
       :db/valueType :db.type/ref
       :db/cardinality :db.cardinality/many}
      ;; publish time
-     { :db/ident :publish/at
+     {:db/ident :publish/at
       :db/valueType :db.type/instant
       :db/cardinality :db.cardinality/one
       :db/index true}]}))
@@ -261,3 +261,88 @@
                      (d/db (:conn datomic-social-db))))
          13))
   (alter-var-root #'datomic-social-db component/stop))
+
+
+(defrecord Datomic-Mem [uri conn schema]
+  component/Lifecycle
+  (start [component]
+    (let [uri (str "datomic:mem://" (gensym))
+          db (d/create-database uri)
+          conn (d/connect uri)
+          ]
+      @(d/transact conn schema)
+      (-> component
+          (assoc  :conn conn)
+          (assoc  :uri uri)
+          (assoc :db (d/db conn)))))
+  (stop [component]
+    (when conn (d/release conn))
+    (d/delete-database uri)
+    (assoc component :conn nil)))
+
+(defn resume []
+  (map->Datomic-Mem
+   {:schema
+    [{:db/ident :resume/company
+      :db/valueType :db.type/string
+      :db/cardinality :db.cardinality/one}
+
+     {:db/ident :company/hash
+      :db/valueType :db.type/string
+      :db/cardinality :db.cardinality/one}
+
+     {:db/ident :company/things
+      :db/valueType :db.type/ref
+      :db/cardinality :db.cardinality/one}
+
+     {:db/ident :resume/title
+      :db/valueType :db.type/string
+      :db/cardinality :db.cardinality/many
+      :db/fulltext true
+      :db/index true}
+
+     {:db/ident :comments
+      :db/valueType :db.type/ref
+      :db/cardinality :db.cardinality/many
+      :db/isComponent true}
+
+     {:db/ident :comment/body
+      :db/valueType :db.type/string
+      :db/cardinality :db.cardinality/one}
+
+     {:db/ident :comment/author
+      :db/valueType :db.type/ref
+      :db/cardinality :db.cardinality/one}
+
+     {:db/ident :user/firstName
+      :db/valueType :db.type/string
+      :db/cardinality :db.cardinality/one}
+
+     {:db/ident :user/lastName
+      :db/valueType :db.type/string
+      :db/cardinality :db.cardinality/one}
+
+     {:db/ident :user/email
+      :db/unique :db.unique/identity
+      :db/valueType :db.type/string
+      :db/cardinality :db.cardinality/one}
+
+     {:db/ident :user/dob
+      :db/valueType :db.type/instant
+      :db/cardinality :db.cardinality/one
+      }
+
+     {:db/ident :user/msisdn
+      :db/unique :db.unique/identity
+      :db/valueType :db.type/string
+      :db/cardinality :db.cardinality/one}
+
+     {:db/ident :user/upVotes
+      :db/valueType :db.type/ref
+      :db/cardinality :db.cardinality/many}
+
+     ;; publish time
+     {:db/ident :publish/at
+      :db/valueType :db.type/instant
+      :db/cardinality :db.cardinality/one}
+     ]}))
