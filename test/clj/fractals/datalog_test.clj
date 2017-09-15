@@ -253,7 +253,7 @@
                                   (into []))
                              ))
                [:user/email "john@example.com"]))))
-  @(d/transact (:conn datomic-social-db) (gen-users-wilth-upvotes 10))
+  @(d/transact (:conn datomic-social-db) (gen-users-with-upvotes 10))
   (is (= (count (d/q '[:find ?id :where
                        [?id :user/email]]
                      (d/db (:conn datomic-social-db))))
