@@ -152,7 +152,7 @@
             {:user/email email
              :user/upVotes stories}))
    (take n (gen/sample email-gen))
-   (take n (repeat  (take 10 (gen/sample (gen/not-empty gen/string-alpha-numeric)))  ))))
+   (take n (repeat  (take 10 (gen/sample (gen/not-empty gen/string-alpha-numeric)))))))
 
 
 (deftest datomic-lifecycle-mbrainz-db
@@ -160,63 +160,61 @@
     (alter-var-root #'datomic-social-db component/start)
     (is (= (type (:conn datomic-social-db))
            datomic.peer.LocalConnection))
-    (is (:conn datomic-social-db)))
-  (is (=
-       "Teach Yourself Programming in Ten Years"
-       (:story/title
-        (d/entity
-         (:db-after
-          @(d/transact (:conn datomic-social-db)
-                       [{:story/title "Teach Yourself Programming in Ten Years"
-                         :story/url "http://norvig.com/21-days.html"}
-                        { :story/title "Clojure Rationale"
-                         :story/url "http://clojure.org/rationale"}
-                        {:story/title "Beating the Averages"
-                         :story/url "http://www.paulgraham.com/avg.html"}
-                        { :user/firstName "Stu"
-                         :user/lastName "Halloway"
-                         :user/email "stuarthalloway@datomic.com"}
-                        {:user/firstName "Ed"
-                         :user/lastName "Itor"
-                         :user/email "editor@example.com"}]))
-         [:story/url "http://norvig.com/21-days.html"]))))
+    (is (:conn datomic-social-db))
+    (is (= "Teach Yourself Programming in Ten Years"
+           (:story/title
+            (d/entity
+             (:db-after
+              @(d/transact (:conn datomic-social-db)
+                           [{:story/title "Teach Yourself Programming in Ten Years"
+                             :story/url "http://norvig.com/21-days.html"}
+                            { :story/title "Clojure Rationale"
+                             :story/url "http://clojure.org/rationale"}
+                            {:story/title "Beating the Averages"
+                             :story/url "http://www.paulgraham.com/avg.html"}
+                            { :user/firstName "Stu"
+                             :user/lastName "Halloway"
+                             :user/email "stuarthalloway@datomic.com"}
+                            {:user/firstName "Ed"
+                             :user/lastName "Itor"
+                             :user/email "editor@example.com"}]))
+             [:story/url "http://norvig.com/21-days.html"]))))
 
-  (is (=  (count (d/q '[:find [?e ...]
-                        :where [?e :story/url]]
-                      (d/db (:conn datomic-social-db))))
-          3))
-  (is (= "john"
-         (->> (conj
-               (mapv
-                (fn [story] [:db/add "john"  :user/upVotes story])
-                (d/q '[:find [?e ...]
-                       :where [?e :story/url]]
-                     (d/db (:conn datomic-social-db))))
+    (is (=  (count (d/q '[:find [?e ...]
+                          :where [?e :story/url]]
+                        (d/db (:conn datomic-social-db))))
+            3))
+    (is (= "john"
+           (->> (conj
+                 (mapv
+                  (fn [story] [:db/add "john"  :user/upVotes story])
+                  (d/q '[:find [?e ...]
+                         :where [?e :story/url]]
+                       (d/db (:conn datomic-social-db))))
 
-               {:db/id "john"
-                :user/email "john@example.com"
-                :user/firstName "john"
-                :user/lastName "Doe"})
-              (d/transact (:conn datomic-social-db))
-              deref
-              :db-after
-              ((fn [db]
-                 (d/entity
-                  db
-                  [:user/email "john@example.com"])))
-              :user/firstName)))
+                 {:db/id "john"
+                  :user/email "john@example.com"
+                  :user/firstName "john"
+                  :user/lastName "Doe"})
+                (d/transact (:conn datomic-social-db))
+                deref
+                :db-after
+                ((fn [db]
+                   (d/entity
+                    db
+                    [:user/email "john@example.com"])))
+                :user/firstName)))
 
-  (is (= (:user/firstName (d/entity
-                           (:db-after
-                            @(d/transact
-                              (:conn datomic-social-db)
-                              [{:user/email "john@example.com"
-                                ;; this finds the existing entity
-                                :user/firstName "Johnathan2"}]))
-                           [:user/email "john@example.com"]))
-         "Johnathan2"))
-
-  (is (= 3 (count (:user/upVotes (d/entity (d/db (:conn datomic-social-db))
+    (is (= (:user/firstName (d/entity
+                             (:db-after
+                              @(d/transact
+                                (:conn datomic-social-db)
+                                [{:user/email "john@example.com"
+                                  ;; this finds the existing entity
+                                  :user/firstName "Johnathan2"}]))
+                             [:user/email "john@example.com"]))
+           "Johnathan2"))
+    (is (= 3 (count (:user/upVotes (d/entity (d/db (:conn datomic-social-db))
                                            [:user/email "john@example.com"])))))
 
   (is (= 2
@@ -255,12 +253,12 @@
                                   (into []))
                              ))
                [:user/email "john@example.com"]))))
-  @(d/transact (:conn datomic-social-db) (gen-users-with-upvotes 10))
+  @(d/transact (:conn datomic-social-db) (gen-users-wilth-upvotes 10))
   (is (= (count (d/q '[:find ?id :where
                        [?id :user/email]]
                      (d/db (:conn datomic-social-db))))
          13))
-  (alter-var-root #'datomic-social-db component/stop))
+  (alter-var-root #'datomic-social-db component/stop)))
 
 
 (defrecord Datomic-Mem [uri conn schema]
