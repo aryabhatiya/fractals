@@ -1,6 +1,7 @@
 (ns fractals.about
-  (:require [rum.core :as rum]
-            [fractals.svg :as svg]))
+  (:require
+   [rum.core :as rum]
+   [fractals.svg :as svg]))
 
 (rum/defcs r-link2 < (rum/local "#333333" ::cl ) (rum/local "#F1F3F5" ::bg)
   [state link name fw align]

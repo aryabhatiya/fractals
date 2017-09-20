@@ -97,14 +97,17 @@
 
 (defonce layout (atom 1000))
 
+(defn set-layout [w]
+  (swap! app-state assoc-in
+         [:window :layout]
+         (cond
+           (and  (< w 1000) (> w 600)) :medium
+           (< w 600 ) :swall
+           :else :wide)))
+
 (add-watch layout ::layout
            (fn [_ _ _ w]
-             (swap! app-state assoc-in
-                    [:window :layout]
-                    (cond
-                      (and  (< w 1000) (> w 600)) :medium
-                      (< w 600 ) :swall
-                      :else :wide))))
+             (set-layout w)))
 
 (js/window.addEventListener
  "resize"
@@ -120,4 +123,5 @@
 (defn ^:export main []
   (dev-setup)
   (app-routes)
+  (set-layout app-state)
   (reset))
