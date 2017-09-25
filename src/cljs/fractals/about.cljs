@@ -27,42 +27,52 @@
   (let [fw (if (= wsize :swall) "1rem" "1.4rem")
         align (if (= wsize :swall) :left :center)]
     [:div {:style {:grid-column 1
+                   :display :flex
+                   :flex-direction :column
+                   :justify-content :space-between
                    :color "#fff"
                    :font-size fw
                    :padding "15px"
                    :backgroundColor "#333"}}
-     (r-link2 "#/about"  "Show Demo" fw align)
-     [:div {:style {:font-size (if (= wsize :swall) "1.4rem" "2.5rem")
-                    :font-family "'Slabo 27px', serif"
-                    :text-align align
-                    :padding "10px"}} "MD. ASHIK"]
-     (svg/cover-photo)
+     [:div {:style (if  (= wsize :swall ) {} {:height "100px"})}
+      (r-link2 "#/about"  "Show Demo" fw align)
+      [:div {:style {:font-size (if (= wsize :swall) "1.4rem" "2.5rem")
+                     :font-family "'Slabo 27px', serif"
+                     :text-align align
+                     :padding "10px"}} "MD. ASHIK"]
+      (svg/cover-photo)
+      [:div {:style {:background-color :white
+                     :height "1px"}
+             } ]
+      [:div {:style {:text-align align}} "+8801717018083"]
+      [:div {:style {:background-color :white
+                     :height "1px"}
+             }]
+      [:div {:style {:text-align align
+                     :font-size "12px"}} "aryabhatiya.algebra@gmail.com"]
+      [:div {:style {:background-color :white
+                     :height "1px"}
+             } ]
+      [:div {:style {:padding-top "50px"
+                     :font-size fw
+                     :line-height "1.1rem"
+                     :font-family "'Slabo 27px', serif"
+                     }}
+       [:div {:style {:display :grid
+                      :grid-gap "20px"}}
+        [:div
+         [:span {:style {:font-size "3rem"}} "“F"]
+         "ullstack developeing experience on mobile & IOT."]
+        [:div "Rapid developement with great reliability"]
 
-     [:div {:style {:background-color :white
-                    :height "1px"}
-            } ]
-     [:div {:style {:text-align align}} "+8801717018083"]
-     [:div {:style {:background-color :white
-                    :height "1px"}
-            }]
-     [:div {:style {:text-align align
-                    :font-size "12px"}} "aryabhatiya.algebra@gmail.com"]
-     [:div {:style {:background-color :white
-                    :height "1px"}
-            } ]
-     [:div {:style {:padding-top "50px"
-                    :font-size fw
-                    :line-height "1.1rem"
-                    :font-family "'Slabo 27px', serif"
-                    }}
-      [:div {:style {:display :grid
-                     :grid-gap "20px"}}
-       [:div
-        [:span {:style {:font-size "3rem"}} "“F"]
-        "ullstack developeing experience on mobile & IOT."]
-       [:div "Rapid developement with great reliability"]
+        [:div "Devops.. friendl" [:span {:style {:font-size "3rem"}} "y”"] ] ]]]
 
-       [:div "Devops.. friendl" [:span {:style {:font-size "3rem"}} "y”"] ] ]]]))
+
+     [:div {:style  {:padding-top "50px"
+                     :font-size fw
+                     :line-height "1.1rem"
+                     :font-family "'Slabo 27px', serif"
+                     }} "H# 192, R# 5, Mirpur DOHS, Dhaka - 1216"]]))
 
 (rum/defc right-site [state]
   [:div {:style {:color "#fff"
