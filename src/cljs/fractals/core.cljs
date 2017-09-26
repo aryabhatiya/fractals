@@ -6,6 +6,7 @@
    [rum.core :as rum]
    [fractals.svg :as svg]
    [fractals.about :as about]
+   [fractals.email :as email]
    [fractals.board :as board]
    [secretary.core :as secretary]
    [clojure.string :as str]
@@ -68,7 +69,8 @@
   (cond
     (= (:page (rum/react state)) :home) (about/about state)
     (= (:page (rum/react state)) :svg) (svg/svg-test state)
-    (= (:page (rum/react state)) :about) (greeting state)))
+    (= (:page (rum/react state)) :about) (greeting state)
+    (= (:page (rum/react state)) :email) (email/email state)))
 
 
 (defn dev-setup []
@@ -86,6 +88,9 @@
 
   (defroute "/about" []
     (swap! app-state assoc :page :about))
+
+  (defroute "/email" []
+    (swap! app-state assoc :page :email))
 
   (defroute "/svg" []
     (swap! app-state assoc :page :svg))
