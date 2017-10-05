@@ -12,8 +12,8 @@
                      :padding-left "15px"
                      :padding-right "15px"
                      }}
-      [:tbody
-       [:tr
+     [:tbody
+      [:tr
         [:td
          [:table
           [:tbody
@@ -164,9 +164,13 @@
              [:div {:style {:padding "7px"
                             :color :white
                             :background-color "#12808D"}} "Iphone Hybrid APP"]
-             [:div "Objective C"]
-             [:div "Apple Swift"]
              [:div "React Native"]
+             [:div "RN Bridge"]
+             [:div "Flex Box"]
+             [:div "iOS Components"]
+             [:div "Objective C"]
+             ;; [:div "Apple Swift"]
+             [:div "Offline first"]
              [:div "Cocoa Touch"]
              [:div "iOS SDK"]
              [:div "Core Services"]
@@ -174,7 +178,7 @@
              [:div "Managing Memory"]
              [:div "Java​Script​Core"]
              [:div "C/C++"]
-             [:div "UI/UX"]]]
+             ]]
            ]
           ]]]
        [:td {:style  {:box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
@@ -516,7 +520,7 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
   Implementing Redis Cluster solve this problem because data stays memory use disk for persistence
   but it loose the ability to SQL over database. Finally we came out optimal data base which only only
   leverage SQL query but also can query graph database and document query at the same time efficiently
-  use Redis Clusters. Read More » "]]]])
+  use Redis Clusters."]]]])
 
 (rum/defc middle-site-email [state]
   (let [fw "1.4rem"
@@ -618,9 +622,7 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
                      :padding "0"
                      :height "100%"
                      :width "100%"
-                     :background-color "#ddd"}
-
-             }
+                     :background-color "#ddd"}}
      [:tbody
       [:tr
        [:td {:style {
@@ -641,6 +643,18 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
                          :border-collapse :collapse
                          :width "600px"}}
          [:tbody
+          [:tr [:td {:style {:padding "10px"
+                             :text-align :left
+                             :background-color "rgb(41, 73, 130)"}}
+                [:div {:style {:font-size "1.1rem"
+                               :padding "4px"}}
+                 "Hello " [:img {:style {:height "12px"}
+                                 :src "http://strativ.se/wp-content/uploads/2016/04/logo_zerif_default.png"}]]
+                [:div {:style {:fond-size "1rem"
+                               :color "#f1f1f1"
+                               :padding-left "5px"
+                               :text-align :left}} "Please accent my Résumé for React Native Developer	– Iphone and Android."]]]
+
           [:tr
            [:td {:style {
                          :color "#878787"
@@ -653,5 +667,18 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
                              :font-size "13px"}}
              [:tbody
               [:tr [:td {:style {:text-align "center"}}
-                    (email-body state)]]]]]]]]
-        ]]]]]])
+                    (email-body state)]]]]]]
+          [:tr
+           [:td {:style { :background-color "#F3F3F3"}}
+                [:table
+                 [:tbody
+                  [:tr [:td [:img {:style {:height "23px"
+                                           }
+                                   :src "https://pbs.twimg.com/profile_images/616309728688238592/pBeeJQDQ.png"}]]
+                   [:td [:a {:href "https://github.com/aryabhatiya"} "https://github.com/aryabhatiya"]]
+                   [:td [:img {:style {:height "23px"
+                                       :padding-right "3px"}
+                               :src "https://cdn1.iconfinder.com/data/icons/simple-icons/2048/heroku-2048-black.png"}]]
+                   [:td [:a {:href "https://pacific-earth-90914.herokuapp.com/#/"}
+                         "https://pacific-earth-90914.herokuapp.com/#/"]]
+                   ]]]]]]]]]]]]])
