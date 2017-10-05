@@ -22,18 +22,19 @@
 
            [:tr [:td {:style {:text-align align
                               :font-size "1rem"}} "+8801717018083"]]
-           [:tr [:td {:style {:text-align align
-                              :font-size "12px"}}
-                 [:div {:style {:background-color :white
-                               :height "1px"}
-                       }]
-                 [:div  "aryabhatiya.algebra@gmail.com"]]]
+           (comment
+             [:tr [:td {:style {:text-align align
+                                :font-size "12px"}}
+                   [:div {:style {:background-color :white
+                                  :height "1px"}
+                          }]
+                   [:div  "aryabhatiya.algebra@gmail.com"]]])
            [:tr [:td {:style {:text-align align
                               :font-size "10px"}}
-                 [:div {:style {:background-color :white
-                                :height "1px"}
-                        }]
-                 [:div "H# 192, R# 5, Mirpur DOHS, Dhaka"]]]
+                 (comment [:div {:style {:background-color :white
+                                         :height "1px"}
+                                 }])
+                 [:div "H# 192, R# 5, Mirpur DOHS, Dhaka - 1216"]]]
            ]]]
         [:td [:div {:style {:width "50px"}}]]
         [:td
@@ -51,7 +52,7 @@
                               [:tr [:td
                                     [:span {:style {:align-text :left
                                                     :font-size "1.4rem"}} "“F"]
-                                    "ullstack developeing experience on mobile & IOT."]]
+                                    "ullstack developing experience on mobile & IOT."]]
                               [:tr [:td  "Devops.... friendl"
                                     [:span {:style { :font-size "1.4rem"}} "y”"]]]
                               ]]]]]]]]]]))
@@ -89,17 +90,18 @@
       [:tr
        [:td {:style {:fond-size fw-small
                      :width "250px"
-                     :padding "10px"
+                     :padding-left "10px"
+                     :padding-right "10px"
                      :background-color "#fff"
                      :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"}}
-        [:div {:style {:padding "10px"
+        [:div {:style {:padding "5px"
                        :color "#666"
                        :font-size fw-small}}
-         "Joined May 2012"]
+         "Joined Nov 2013"]
         [:div {:style {
                        :background-color "#185E65"
                        :color "#BFBFBF"
-                       :padding "10px"
+                       :padding "5px"
                        :font-size fw-small}}
          [:a {:style {:color "#BFBFBF"
                       :text-decoration :none}
@@ -107,13 +109,13 @@
          [:div {:style {:text-align :center}} [:span {:style {:font-weight 600
                                                               :font-size "1.1rem"}} "// " ]
           " SGC GLOBAL"]]
-        [:div {:style {:padding "5px"
+        [:div {:style {:padding "2px"
                        :color "#666"
                        :font-size fw-small}}
-         "5+ years"]]
+         "3.5+ years"]]
        [:td
 
-        [:table {:style {:padding "5px"
+        [:table {:style {:padding "10px"
                          :font-size fw-small
                          :color "#003399"
                          :background-color "#fff"
@@ -136,12 +138,71 @@
                   [:tr [:td "➟ Database and Query optimization"]]
                   [:tr [:td "➟ System Automation & Testing"]]]]]]]]]]]]))
 
+(rum/defc position-email-gp [state]
+  (let [fw "1rem"
+        fw-small "1rem"]
+    [:table {:style
+             {:font-family "'Merriweather', serif"}}
+     [:tbody
+      [:tr
+       [:td [:div {:style {:font-weight 600
+                           :font-size fw-small
+                           :text-align :center
+                           :padding "10px"}}
+             "System Engineer"] ]
+       [:td [:div {:style {:font-weight 600
+                           :font-size fw-small
+                           :padding "10px"
+                           }}
+             "GP trouble ticketing System ‒ GPTTS"]]]
+      [:tr
+       [:td {:style {:fond-size fw-small
+                     :width "250px"
+                     :padding-left "10px"
+                     :padding-right "10px"
+                     :background-color "#fff"
+                     :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"}}
+        [:div {:style {:padding "5px"
+                       :color "#666"
+                       :font-size fw-small}}
+         "Joined Feb 2012"]
+        [:div {:style {
+                       :background-color "#87ceeb"
+                       :color "#582828"
+                       :padding "10px"
+                       :font-size fw-small}}
+         [:div {:style {:text-align :center}}
+          "Grameen Phone"]]
+        [:div {:style {:padding "2px"
+                       :color "#666"
+                       :font-size fw-small}}
+         "1.5+ years"]]
+       [:td
+
+        [:table {:style {:padding "10px"
+                         :font-size fw-small
+                         :color "#003399"
+                         :background-color "#fff"
+                         :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"}}
+         [:tbody
+          [:tr [:td {:style {:text-align :left
+                             :background-color "#181818"
+                             :padding-top "7px"
+                             :borderRadius "3px"
+                             :font-size "14px"
+                             :color "#BFBFBF"}}
+                [:table
+                 [:tbody
+                  [:tr [:td "Real Time Notification System from Network Alarms"]]
+                  [:tr [:td "Multimedia Messaging Systems for Web & Mobile"]]
+                  ]]]]]]]]]]))
+
 (rum/defc email-iphone [state]
   [:table {:style
            {:height "250px"
             :background-color "#DDDDDD"
             :background-position "20% 80%"
-            :background-size "400px 270px"
+            :background-size "400px 300px"
             :background-image (str "url" "("  "\"https://i.pinimg.com/originals/8c/b5/0d/8cb50d60ce244eb04907fc7924763493.gif\""  ")")
             ;; :background-image (str "url" "("  "\"https://cdn.dribbble.com/users/273461/screenshots/2513600/shopping2.gif\""  ")")
             :background-repeat :no-repeat}}
@@ -153,53 +214,55 @@
           [:tr
            [:td
             [:div {:style {:box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+                           :opacity ".5"
                            :color "#D9C9BA"
                            :height "100%"
                            :width "150px"
                            :font-size "0.9rem"
-                           :background-color "#4A3356"
+                           :background-color "#383838"
                            :padding-left "5px"
                            :text-align :left
                            }}
              [:div {:style {:padding "7px"
                             :color :white
-                            :background-color "#12808D"}} "Iphone Hybrid APP"]
+                            :background-color "#12808D"}} "iPhone Hybrid APP"]
              [:div "React Native"]
              [:div "RN Bridge"]
-             [:div "Flex Box"]
-             [:div "iOS Components"]
+             [:div "RN Animated"]
+             [:div "RN Navigation"]
+             [:div "RN Touch & Gesture"]
              [:div "Objective C"]
              ;; [:div "Apple Swift"]
-             [:div "Offline first"]
+             ;; [:div "Offline first"]
+             [:div "Yoga Layout"]
              [:div "Cocoa Touch"]
              [:div "iOS SDK"]
              [:div "Core Services"]
              [:div "Xcode"]
              [:div "Managing Memory"]
-             [:div "Java​Script​Core"]
              [:div "C/C++"]
              ]]
-           ]
-          ]]]
-       [:td {:style  {:box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+           [:td {:style  {:box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
                       :text-align :left
                       :color "#181818"
                       :padding-left "170px"}}
-        [:table
-         [:tbody
-          [:tr [:td "We have implemented rich iphone user interface high-end Corporate Customers which are a Raltime Websocket based Platforms sinked with realtime database and implemented offline caching. We started these projects using Objective C and over the time we have abopt React Native and swift for greater programming flexibility, interfaceing with technologis like graphql and real time coding experience. "]
-           ]
-          (comment
-            [:tr [:td "Now a days we use Objective C for heavy lifting like Cocoa Touch and UI transition. We use swift for developing new modules. As Swift doesn’t just embrace Cocoa APIs, it actively improves them."]]
-            [:tr [:td "I have mastered with Model-View-Controller pattern and View controllers pattern, view hierarchy, Containers and Storyboards,  navigation controllers, tab controller, split view controller which is a the center of iOS development. Worked closely with auto Layout, table views and the delegate pattern which display a scrollable list of items on the screen, containers and storyboards which make the flow of the interface from one screen to the next happen, Xcode and Interface Buider.
+            [:table
+             [:tbody
+              [:tr [:td {:style {:padding "3px"
+                             :background-color "#fff"}} "We have implemented rich user interface in iPhone for corporate users which are real time websocket based platforms connected to real time database, offline caching for airplane mode. We have adopted React Native for programming flexibility, interfacing with technologies like GraphQL and for real time programming experience."]
+
+           (comment
+             [",  navigation controllers, tab controller, split view controller which is a the center of iOS development."]
+             [:tr [:td "Now a days we use Objective C for heavy lifting like Cocoa Touch and UI transition. We use swift for developing new modules. As Swift doesn’t just embrace Cocoa APIs, it actively improves them."]]
+             [:tr [:td "I have mastered with Model-View-Controller pattern and View controllers pattern, view hierarchy, Containers and Storyboards,  navigation controllers, tab controller, split view controller which is a the center of iOS development. Worked closely with auto Layout, table views and the delegate pattern which display a scrollable list of items on the screen, containers and storyboards which make the flow of the interface from one screen to the next happen, Xcode and Interface Buider.
 " ]]
-          [:tr [:td "Cocoa is an impressively deep API—dig a little below the surface of any common tool, so far I have worked with following modules"]]
-          [:tr [:td "Simple data persistence with NSCoding and NSKeyedArchiver"]]
-          [:tr [:td "Object-oriented concurrent execution with NSOperation"]]
-          [:tr [:td "Detection of all sorts of data with NSDataDetector"]]
-          [:tr [:td "Native custom sharing and editing controls with UIActivityViewController and UIMenuController"]])
-          ]
-         ]]]]])
+             [:tr [:td "Cocoa is an impressively deep API—dig a little below the surface of any common tool, so far I have worked with following modules"]]
+             [:tr [:td "Simple data persistence with NSCoding and NSKeyedArchiver"]]
+             [:tr [:td "Object-oriented concurrent execution with NSOperation"]]
+             [:tr [:td "Detection of all sorts of data with NSDataDetector"]]
+             [:tr [:td "Native custom sharing and editing controls with UIActivityViewController and UIMenuController"]])]
+              [:tr [:td {:style {:background-color "#fff"}} "We have mastered Objective-C's MVC, view controllers pattern, view hierarchy, containers and storyboards implementations. This leverage us to do hybrid apps where performance incentive codes are implemented in Object-C and React Native business logic."]]
+              ]]]]]]]]]])
 
 (rum/defc technology-stack [state]
     [:table
@@ -232,6 +295,7 @@
             [:div "Ansiable"]
             [:div "ngnix"]]]
           [:tr [:td {:style { :color "#D9C9BA"
+                             :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
                              :text-align :left
                              :height "100%"
                              :font-size "0.85rem"
@@ -289,27 +353,25 @@
 
   So while unit tests might verify a reasonable set of assumptions, you can’t manually catch all the possible cases that need to be tested. Thinking beyond a subset of expectations becomes very inefficient at some point. There’s a limitation here. This is where generative testing comes into play.
 
-.")]]
-      ]]
-    )
+.")]]]])
 
 (rum/defc android-email [state]
   [:table {:style {:background-color "#fff"
                    :width "100%"}}
    [:tbody
     [:tr
-     [:td {:style {:box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+     [:td {:style {:box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,0.12)"
                    :text-align :left
                    :width "150px"
                    :color "#D9C9BA"
                    :height "100%"
                    :font-size "0.85rem"
-                   :background-color "#4A3356"
+                   :background-color "#383838"
                    :padding-left "5px"
                    }}
       [:div {:style {:padding "7px"
                      :color :white
-                     :background-color "#12808D"}} "Android Hybrid APP"]
+                     :background-color "#a4c639"}} "Android Hybrid APP"]
       [:div "Java"]
       [:div "Kotlin"]
       [:div "WebRTC"]
@@ -323,20 +385,21 @@
       [:div "Gradle"]
       [:div "JNI NDK"]]
      [:td {:style {:text-align :left
-                   :padding "2px"}}
-      [:div {:style {:padding "2px"
+                   :padding "2px"
+                   :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"}}
+      [:div {:style {:padding "5px"
                      :font-size "14px"
-                     :font-weight "600"}} "UI Rending Optimization"]
+                     :font-weight "600"}} "UI Rending Optimizations"]
 
-      "As UIs become increasingly sophisticated, it gets harder to complete all the rendering work that needs to get done in this time frame. This proves to be especially challenging with dynamic scrolling surfaces, as new pieces of UI are constantly being introduced onscreen. So to achieve device screens refresh at a rate of 60 frames per second. Providing smooth performance we changes to our UI continuously every 16 ms. If we don’t, it can lead to dropped frames and a poor experience.
-
-We addresses this with RecyclerView, a dynamic UI container that is able to display elements from large data sets by creating only enough views to fill the screen and then recycling and reusing them as the UI scrolls. Whenever a new item is about to become visible, RecyclerView will recycle or create the appropriate view, bind the view with the right data, and then finally measure, lay out, and draw it onscreen. Fitting all these operations within the 16 ms the main thread has to compute a new frame was challenging."]
-     [:td {:style {:text-align :left
+      "As UIs become increasingly sophisticated, it gets harder to complete all the rendering work that needs to get done in this time frame of 60 frames per second. We addresses this with RecyclerView, a dynamic UI container that is able to display elements from large data sets by creating only enough views to fill the screen and then recycling and reusing them as the UI scrolls."]
+     [:td {:style {:box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+                   :text-align :left
                    :padding "2px"}}
-      [:div {:style {:padding "2px"
+      [:div {:style {
+                     :padding "2px"
                      :font-size "14px"
                      :font-weight "600"}}  "WebRTC based Social Network"]
-      "WebRTC based social network enables instant messaging, video conferencing and voice over IP faciliteis. We have worked The WebRTC specification specifies the use of STUN, TURN and ICE to support NAT traversal requirements which ensure Guaranteed connectivity, Highest possible P2P rates."
+      "We have implemented WebRTC based corporate instant messaging, video conferencing and voice over IP. We have worked The WebRTC specification specifies the use of STUN, TURN and ICE to support NAT traversal requirements which ensure guaranteed connectivity, highest possible P2P rates."
       ]
      (comment
        [:td {:style {:text-align :left
@@ -346,59 +409,16 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
      ]]])
 
 (rum/defc fullstack-email [state]
-  [:table {:style {:width "150px"}}
+  [:table {:style {:box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+                   :width "150px"}}
    [:tbody
     [:tr
      [:td {:style {:text-align :left
+                   :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
                    :color "#D9C9BA"
                    :height "100%"
                    :font-size "0.85rem"
-                   :background-color "#4B4D5A"
-                   :padding-left "5px"
-                   }}
-      [:div {:style {:padding "7px"
-                     :color "#4B4D5A"
-                     :background-color "#7D889C"}} "Protocols"]
-      [:div "Streaming"]
-      [:div "Websocket"]
-      [:div "GraphQL"]
-      [:div "Rest/JSON"]
-      ]]
-    [:tr
-     [:td {:style {:text-align :left
-                   :color "#D9C9BA"
-                   :height "100%"
-                   :font-size "0.85rem"
-                   :background-color "#4B4D5A"
-                   :padding-left "5px"
-                   }}
-      [:div {:style {:padding "7px"
-                     :color "#4B4D5A"
-                     :background-color "#7D889C"}} "Programming"]
-      [:div "Python"]
-      [:div "Flask"]
-      [:div "gEvent"]
-      [:div "nodejs"]]]
-    [:tr
-     [:td {:style {:text-align :left
-                   :color "#D9C9BA"
-                   :height "100%"
-                   :font-size "0.85rem"
-                   :background-color "#4B4D5A"
-                   :padding-left "5px"
-                   }}
-      [:div {:style {:padding "7px"
-                     :color "#4B4D5A"
-                     :background-color "#7D889C"}} "Realtime Analytics"]
-      [:div "SQL Alcalamy"]
-      [:div "Datalog"]
-      [:div "Map Ruduce"]]]
-    [:tr
-     [:td {:style {:text-align :left
-                   :color "#D9C9BA"
-                   :height "100%"
-                   :font-size "0.85rem"
-                   :background-color "#4A3356"
+                   :background-color "#7D889C"
                    :padding-left "5px"
                    }}
       [:div {:style {:padding "7px"
@@ -406,21 +426,22 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
                      :background-color "#12808D"}} "Single Page APP (SPA)"]
       [:div "ReactJs"]
       [:div "Redux"]
-      [:div "VueJS"]
+      [:div "ClojureScript"]
       ]]
     [:tr
      [:td {:style {:text-align :left
-                    :color "#D9C9BA"
-                    :height "100%"
-                    :font-size "0.85rem"
-                    :background-color "#4A3356"
-                    :padding-left "5px"
+                   :color "#D9C9BA"
+                   :height "100%"
+                   :font-size "0.85rem"
+                   :background-color "#7D889c"
+                   :padding-left "5px"
                    }}
       [:div {:style {:padding "12px"
                      :color :white
                      :background-color "#12808D"}} "Info Graphics"]
       [:div "HTML5/CSS3"]
-      [:div "SVG/D3"]
+      [:div "SVG"]
+      [:div "Inkscape"]
       [:div "Spring Animation"]]]
     [:tr
      [:td {:style {:text-align :left
@@ -432,14 +453,66 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
                    }}
       [:div {:style {:padding "7px"
                      :color "#4B4D5A"
-                     :background-color "#7D889C"}} "Relational Database"]
+                     :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+                     :background-color "#7D889C"}} "Protocols"]
+      [:div "Streaming"]
+      [:div "Websocket"]
+      [:div "GraphQL"]
+      [:div "Rest ‒ JSON"]
+      ]]
+    [:tr
+
+     [:td {:style {:text-align :left
+                   :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+                   :color "#D9C9BA"
+                   :height "100%"
+                   :font-size "0.85rem"
+                   :background-color "#4B4D5A"
+                   :padding-left "5px"
+                   }}
+      [:div {:style {:padding "7px"
+                     :color "#4B4D5A"
+                     :background-color "#7D889C"}} "Programming"]
+      [:div "Java"]
+      [:div "Nodejs"]
+      [:div "Clojure"]
+      [:div "Python"]]]
+    [:tr
+     [:td {:style {:text-align :left
+                   :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+                   :color "#D9C9BA"
+                   :height "100%"
+                   :font-size "0.85rem"
+                   :background-color "#4B4D5A"
+                   :padding-left "5px"
+                   }}
+      [:div {:style {:padding "7px"
+                     :color "#4B4D5A"
+                     :background-color "#7D889C"}} "Real Time Analytics"]
       [:div "Datalog"]
       [:div "SQL"]
+      [:div "GraphQL"]]]
+
+
+    [:tr
+     [:td {:style {:text-align :left
+                   :color "#D9C9BA"
+                   :height "100%"
+                   :font-size "0.85rem"
+                   :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+                   :background-color "#4B4D5A"
+                   :padding-left "5px"
+                   }}
+      [:div {:style {:padding "7px"
+                     :color "#4B4D5A"
+                     :background-color "#7D889C"}} "Relational Database"]
+      [:div "Oracle 10i"]
       [:div "PostgreSQL"]
       [:div "Datomic"]
       ]]
     [:tr
      [:td {:style {:text-align :left
+                   :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
                    :color "#D9C9BA"
                    :height "100%"
                    :font-size "0.85rem"
@@ -449,9 +522,24 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
       [:div {:style {:padding "7px"
                      :color "#4B4D5A"
                      :background-color "#7D889C"}} "NO-SQL Database"]
-      [:div "Map Reduce"]
       [:div "Raik"]
-      [:div "Radis"]]]]])
+      [:div "Mongo"]
+      [:div "Radis"]]]
+    [:tr
+     [:td {:style {:text-align :left
+                   :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"
+                   :color "#D9C9BA"
+                   :height "100%"
+                   :font-size "0.85rem"
+                   :background-color "#4B4D5A"
+                   :padding-left "5px"
+                   }}
+      [:div {:style {:padding "7px"
+                     :color "#4B4D5A"
+                     :background-color "#7D889C"}} "Artificial intelligence "]
+      [:div "Prolog"]
+      [:div "Mercury"]
+      [:div "MiniKanren"]]]]])
 
 (rum/defc devops-email [state]
   [:div "hello"])
@@ -464,52 +552,41 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
 
 (rum/defc fullstack-email-body [state]
   [:table {:style {:text-align :left
-                                  :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"}}
+                   :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"}}
                   [:tbody
                    [:tr [:td {:style {:font-size "1.1rem"
                                       :padding "5px"}} "Interactive Web and Mobile User Interface development"]]
-                   [:tr [:td {:style {:padding "2px"}} "  Rapid user interfaces Development and look & feel for Web, Android, iPhone are main
-  challenges which needs to be overcome. I overcome these challenges by choosing set of
-  tools and programming language that equally works for web, mobile development and
-" ]]
-                   [:tr [:td {:style {:padding "2px"}} "  In order to create user experience, I use to work with React and React Native for
-  Android and iPhone native UI development. I have adopted functional style of
-  programming with immutable data structure (Redux, GrapthQL) to manage complex UI interaction,
-  transition animation and real time notifications and messaging as well as keep
-  the code always manageable for further development."]]
+                   [:tr [:td {:style {:padding "2px"}} "Rapid user interfaces Development and look&feel for Web, Android, iPhone are main
+  challenges which needs to be overcome. We overcome these challenges by choosing programming languages and frameworks that equally works for web, mobile development and
+Backend." ]]
+
                    [:tr [:td {:style {:padding "2px"}}
-                         "CSS, HTML5, SVG, Canvas are essential part of UI look & feet and also
-  for make the UI responsive but one need to take special care when using these
-  technologies spatially when using CSS frameworks and JavaScript libraries.
-  Which often makes website bulky slower loading time and slower response time.
-  I used dead code elimination techniques using google Clojure compiler so that
-  web site never gets bulky."]]
+                         "CSS, HTML5, SVG, Canvas are essential part of UI look&feel, in order to UI responsive but one need to take special care when using these
+  technologies. Spatially when using CSS frameworks and JavaScript libraries often makes website bulky slower loading time and slower response time.
+  We used dead code elimination techniques using google Clojure compiler so that web site never gets bulky."]]
                    [:tr [:td {:style {:padding "2px"}}
-                         "Data Visualization info graphics is very important part of user interface design
-  its empower user so that user can understand whole business case at a glance.
-  I use d3 and Vega as well as mathematics when convenient for demographics."]]
+                         "Data Visualization infographics is very important part of user interface design
+  its empower user so that user can understand whole business case at a glance. We develop and designing the infographics that can work equally in mobile and web."]]
                    [:tr [:td {:style {:padding "5px"
-                                      :font-size "1.1rem"}
-                              }
+                                      :font-size "1.1rem"}}
                          "Concurrent and fault tolerant Application Development for Web and Internet of things (IOT)"]]
                    [:tr [:td {:style {:padding "2px"}}
-                         " Rise of cloud infrastructure and IOT devices make us thinking of current monolithic
-  application architecture. Estimated number of IOT devices will connect to web by 2020
+                         "Rise of cloud infrastructure and IOT devices make us thinking of current monolithic
+  application architecture twice. Estimated number of IOT devices will connect to web by 2020
   will be 5 times total population of the earth; on the other hand in order to leverage cloud
   infrastructure application needs to be concurrent, fault tolerant and distributed.
-  I use to work with immutable data structure because data mutation is a serious problem
+  We use to work with immutable data structure because data mutation is a serious problem
   for multi thread environment which causes deadlock and data loss and frequent crashing
-  and current solution semaphore locking and mutes doesn’t guaranties to avoid these circumstances.
-  I use communication sequential processing (CPS) to effective message passing between the threads
+  We use communication sequential processing (CPS) to effective message passing between the threads
   which can leverage thousands of threads over the cloud."]]
-                   [:tr [:td {:style {:padding "2px"}}
-                         "  Micro services are necessary part of cloud infrastructure which leverage heterogeneous
+                   (comment [:tr [:td {:style {:padding "2px"}}
+                                  "Micro services are necessary part of cloud infrastructure which leverage heterogeneous
   programming languages work together. I have implemented Micro services with java, nodes,
   python, clojure, c/c++ using by exposing Rest service and JSON data structure to
   subscriber and Message Queues for real time notification. We had tough time ensuring
   height availability and redundancy of micro services and update code one production server.
   I am working on GraphQL, datalog, logic programming,  Erlang error handling mechanism to solve
-  the problems."]]
+  the problems."]])
                    [:tr [:td {:style {:padding "5px"
                                       :font-size "1.1rem"}}
                          "Distributed database design and Query optimization"]]
@@ -530,7 +607,12 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
       [:tr
        [:td
         (position-email state)]]
+      [:tr
+       [:td
+        (position-email-gp state)]]
       [:tr [:td (email-iphone state)]]
+      [:tr  [:td  (android-email)]
+       ]
       [:tr
        [:td
         [:table
@@ -548,8 +630,6 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
                      :color :white}}
         [:span {:style {:font-size "1.8rem"}} "T"]"echnology Stack"]
        ]
-      [:tr  [:td  (android-email)]
-       ]
       [:tr
        [:td
         [:div {:style {:background-color "#fff"}}
@@ -565,7 +645,7 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
        [:td
         [:div {:style {:padding "10px"
                        :font-size ".86rem"}}
-         "I have my BSC  in Computer Engineering from American International University - Bangladesh. I was programming contest in national lavel and My final project was - Design 32-bit processor using MISPs instruction on Xlink FPGA"]
+         "I have my BSC  in Computer Engineering from American International University - Bangladesh. I had participated programming contests and my final project was - Design 32-bit processor using MISPs instruction on Xlink FPGA"]
 
         ]]
       [:tr
@@ -589,7 +669,7 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
       [:tr
        [:td
         [:div {:style {:padding "10px"
-                       :font-size ".86rem"}} "I was born in Dhaka in 20th July 1986. I spend my childhood in many corners of Bangladesh. My father MD Gulam Kibria and My mother is Asia Akter, we are from district Netrokuna. I am married to Rezwanna Sharmin. We have two daughters"]]]]]))
+                       :font-size ".86rem"}} "I was born in Dhaka in 20th July 1986. I spend my childhood on countryside of Bangladesh. My father MD Gulam Kibria and My mother is Asia Akter, we are from district Netrokuna. I am married to Rezwanna Sharmin. We are blessed by two daughters."]]]]]))
 
 
 (rum/defc email-body [state]
@@ -653,7 +733,7 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
                 [:div {:style {:fond-size "1rem"
                                :color "#f1f1f1"
                                :padding-left "5px"
-                               :text-align :left}} "Please accent my Résumé for React Native Developer	– Iphone and Android."]]]
+                               :text-align :left}} "Please accept my Résumé for React Native Developer	– iPhone and Android."]]]
 
           [:tr
            [:td {:style {
