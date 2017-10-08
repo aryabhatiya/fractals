@@ -262,6 +262,9 @@
              [:tr [:td "Detection of all sorts of data with NSDataDetector"]]
              [:tr [:td "Native custom sharing and editing controls with UIActivityViewController and UIMenuController"]])]
               [:tr [:td {:style {:background-color "#fff"}} "We have mastered Objective-C's MVC, view controllers pattern, view hierarchy, containers and storyboards implementations. This leverage us to do hybrid apps where performance incentive codes are implemented in Object-C and React Native business logic."]]
+
+              (comment [:tr [:td {:style {:background-color "#fff"}}
+                             "In order to run at 60 FPS, we are implementing declarative api which will work with Native diver as The async nature of the React Native bridge incurs an inherent performance penalty, preventing JavaScript code from running at high framerates."]])
               ]]]]]]]]]])
 
 (rum/defc technology-stack [state]
@@ -614,6 +617,14 @@ Backend." ]]
       [:tr  [:td  (android-email)]
        ]
       [:tr
+       [:td {:style {:padding "7px"
+                     :font-size "1.2rem"
+                     :background-color "#7D889C"
+                     :font-weight 500
+                     :color :white}}
+        [:span {:style {:font-size "1.8rem"}} "T"]"echnology Stack"]
+       ]
+      [:tr
        [:td
         [:table
          [:tbody
@@ -728,12 +739,12 @@ Backend." ]]
                              :background-color "rgb(41, 73, 130)"}}
                 [:div {:style {:font-size "1.1rem"
                                :padding "4px"}}
-                 "Hello " [:img {:style {:height "12px"}
-                                 :src "http://strativ.se/wp-content/uploads/2016/04/logo_zerif_default.png"}]]
+                 "Hello " [:img {:style {:height "21px"}
+                                 :src "http://www.logicaltriangle.com/images/company_logo.png"}]]
                 [:div {:style {:fond-size "1rem"
                                :color "#f1f1f1"
                                :padding-left "5px"
-                               :text-align :left}} "Please accept my Résumé for React Native Developer	– iPhone and Android."]]]
+                               :text-align :left}} "Please accept my Résumé for Fullstack developer – iPhone and Android"]]]
 
           [:tr
            [:td {:style {
@@ -756,9 +767,9 @@ Backend." ]]
                                            }
                                    :src "https://pbs.twimg.com/profile_images/616309728688238592/pBeeJQDQ.png"}]]
                    [:td [:a {:href "https://github.com/aryabhatiya"} "https://github.com/aryabhatiya"]]
-                   [:td [:img {:style {:height "23px"
-                                       :padding-right "3px"}
-                               :src "https://cdn1.iconfinder.com/data/icons/simple-icons/2048/heroku-2048-black.png"}]]
-                   [:td [:a {:href "https://pacific-earth-90914.herokuapp.com/#/"}
-                         "https://pacific-earth-90914.herokuapp.com/#/"]]
-                   ]]]]]]]]]]]]])
+                   (comment
+                     [:td [:img {:style {:height "23px"
+                                         :padding-right "3px"}
+                                 :src "https://cdn1.iconfinder.com/data/icons/simple-icons/2048/heroku-2048-black.png"}]]
+                     [:td [:a {:href "https://pacific-earth-90914.herokuapp.com/#/"}
+                           "https://pacific-earth-90914.herokuapp.com/#/"]])]]]]]]]]]]]]])
