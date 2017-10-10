@@ -4,8 +4,8 @@
   :license {:name "fractals"
             :url "fractals"}
 
-  :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
-                 [org.clojure/clojurescript "1.9.908" :scope "provided"]
+  :dependencies [[org.clojure/clojure "1.9.0-beta2"]
+                 [org.clojure/clojurescript "1.9.946" :scope "provided"]
                  [ring "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
                  [bk/ring-gzip "0.2.1"]
@@ -23,7 +23,8 @@
                  [com.datomic/datomic-free "0.9.5561.54" :exclusions [com.google.guava/guava]]]
 
   :plugins [[lein-cljsbuild "1.1.6"]
-            [lein-environ "1.1.0"]]
+            [lein-environ "1.1.0"]
+            [cider/cider-nrepl "0.16.0-SNAPSHOT"]]
 
   :min-lein-version "2.6.1"
 

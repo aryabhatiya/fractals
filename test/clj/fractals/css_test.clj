@@ -1,5 +1,9 @@
 (ns fractals.css-test
-  (:require [clojure.test :refer [deftest is]])
+  (:require [clojure.test :refer [deftest is]]
+            [clojure.core.async
+             :as a
+             :refer [>! <! >!! <!! go chan buffer close! thread
+                     alts! alts!! timeout]])
   (:import [java.io StringReader]
            [com.steadystate.css.parser CSSOMParser SACParserCSS3]
            [com.steadystate.css.dom CSSStyleSheetImpl]
