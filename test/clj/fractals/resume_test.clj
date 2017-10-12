@@ -56,6 +56,58 @@
 (spec/def ::email ::email-type)
 (spec/def ::dob inst?)
 
+(spec/def ::tag (spec/and
+                 keyword?
+                 #(re-matches #":[a-z]+([0-9]+)?"
+                              (str  %))))
+
+(str :helloe)
+(spec/def ::tag2
+  (spec/with-gen
+    (spec/and keyword? #(> (count (name %)) 0) )
+    #(sgen/fmap (fn [a] (keyword a))
+      (sgen/such-that
+       (fn [a] (not= a ""))
+       (sgen/string-alphanumeric)))))
+
+(sgen/sample (spec/gen ::tag2) 10)
+
+(sgen/sample (sgen/fmap
+              #(keyword  (str "hello" %))
+              (sgen/such-that
+               #(not= % "")
+               (sgen/string-alphanumeric))) 10)
+
+(spec/def ::hello
+  (spec/with-gen
+    #(clojure.string/includes? % "hello")
+    #(sgen/fmap (fn [[s1 s2]]
+                 (str s1 "hello" s2))
+               (sgen/tuple
+                (sgen/string-alphanumeric)
+                (sgen/string-alphanumeric)))))
+
+(sgen/sample (spec/gen ::hello))
+
+(spec/def ::org-content
+  (spec/and
+   vector?
+   (spec/cat
+    :tag ::tag
+    :content (spec/+ (spec/or
+                   :str string?
+                   :content ::org-content
+                   )))))
+
+(spec/valid?
+ ::org-content
+ [:h1
+  [:p "heloo" ]
+  "daf"
+  [:df "df"]])
+
+(spec/exercise ::org-content 10)
+
 (deftest resume-datom-transection-query
   (testing "Insert & Query data"
     (alter-var-root #'resume-datom component/start)

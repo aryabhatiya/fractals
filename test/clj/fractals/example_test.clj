@@ -4,13 +4,16 @@
             [clojure.test.check.clojure-test :refer [defspec]]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]
-            [clojure.spec.alpha :as s]))
+            [clojure.spec.alpha :as s]
+            [clojure.spec.gen.alpha :as sgen]))
 
-(s/def ::even? (s/and integer? even?))
+(s/def ::even (s/and integer? even?))
+(sgen/generate (s/gen ::even))
 (s/def ::odd? (s/and integer? odd?))
 (s/def ::a integer?)
 (s/def ::b integer?)
 (s/def ::c integer?)
+
 (def s (s/cat :forty-two #{42}
               :odds (s/+ ::odd?)
               :m (s/keys :req-un [::a ::b ::c])
