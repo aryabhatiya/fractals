@@ -92,6 +92,9 @@
   (defroute "/email" []
     (swap! app-state assoc :page :email))
 
+  (defroute "/email2" []
+    (swap! app-state assoc :page :email2))
+
   (defroute "/svg" []
     (swap! app-state assoc :page :svg))
 

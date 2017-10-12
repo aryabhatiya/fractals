@@ -1,8 +1,8 @@
 (ns dk.ative.docjure.spreadsheet-test
-  (:use [dk.ative.docjure.spreadsheet] :reload-all)
-  (:use [clojure.test])
   (:require ;; [cemerick.pomegranate :as pomegranate]
-           [clojure.java.io :as io])
+   [clojure.java.io :as io]
+   [dk.ative.docjure.spreadsheet :as spreadsheet :refer :all]
+   [clojure.test :refer [deftest is testing are]])
   (:import (org.apache.poi.ss.usermodel Workbook Row CellStyle IndexedColors Font CellValue)
            (org.apache.poi.xssf.usermodel XSSFWorkbook XSSFFont)
            (java.util Date)
@@ -19,10 +19,11 @@
 (def datatypes-map {:A :text, :B :integer, :C :decimal, :D :date, :E :time, :F :date-time, :G :percentage, :H :fraction, :I :scientific, :J :date-formulae})
 (def formulae-map {:A :formula, :B :expected})
 
+
 (deftest add-sheet!-test
   (let [workbook (XSSFWorkbook.)
 	sheet-name "Sheet 1"
-	actual   (add-sheet! workbook sheet-name)]
+	actual   (spreadsheet/add-sheet! workbook sheet-name)]
     (testing "Sheet creation"
       (is (= 1 (.getNumberOfSheets workbook)) "Expected sheet to be added.")
       (is (= sheet-name (.. workbook (getSheetAt 0) (getSheetName))) "Expected sheet to have correct name."))
@@ -33,7 +34,7 @@
   (let [sheet-name "Sheet 1"
 	sheet-data [["A1" "B1" "C1"]
 		    ["A2" "B2" "C2"]]
-	workbook (create-workbook sheet-name sheet-data)]
+	workbook (spreadsheet/create-workbook sheet-name sheet-data)]
     (testing "Sheet creation"
       (is (= 1 (.getNumberOfSheets workbook)) "Expected sheet to be added.")
       (is (= sheet-name (.. workbook (getSheetAt 0) (getSheetName))) "Expected sheet to have correct name."))
@@ -757,12 +758,20 @@
 (deftest cell-fn-test
   (testing "Creating a function from a formula cell"
     (let [file (config :simple)
-           loaded (load-workbook file)
-           worksheet (first (sheet-seq loaded))
-           cell-function (cell-fn "B3" worksheet "A2")]
-       (is (= (cell-function 2.0) 5.0))
-       (is (= (cell-function 3.0) 7.0))
-       )))
+          loaded (load-workbook file)
+          worksheet (first (sheet-seq loaded))
+          cell-function (cell-fn "B3" worksheet "A2")]
+      (is (= (cell-function 2.0) 5.0))
+      (is (= (cell-function 3.0) 7.0))
+      )))
+
+(let [file (config :simple)
+      loaded (load-workbook file)
+      worksheet (first (sheet-seq loaded))
+      cell-function (cell-fn "B3" worksheet "A2")]
+  (is (= (cell-function 2.0) 5.0))
+  (is (= (cell-function 3.0) 7.0))
+  )
 
 ;; ----------------------------------------------------------------
 ;; Integration tests
@@ -889,12 +898,12 @@
               [nil      "Ninth"    "Tenth"]]
 	workbook (create-workbook "Sheet 1" data)]
     (testing "Set named range and retrieve cells from it."
-             (add-name! workbook "test1" "'Sheet 1'!$A$1")
-             (add-name! workbook "ten" "'Sheet 1'!$B$1:$C$5")
-             (is (= "Test1" (read-cell (first (select-name workbook "test1")))))
-             (is (= (reduce concat (map (fn [[_ a b]] [a b]) data))
-                    (map read-cell (select-name workbook "ten"))))
-             (is (nil? (select-name workbook "bill"))))))
+      (add-name! workbook "test1" "'Sheet 1'!$A$1")
+      (add-name! workbook "ten" "'Sheet 1'!$B$1:$C$5")
+      (is (= "Test1" (read-cell (first (select-name workbook "test1")))))
+      (is (= (reduce concat (map (fn [[_ a b]] [a b]) data))
+             (map read-cell (select-name workbook "ten"))))
+      (is (nil? (select-name workbook "bill"))))))
 
 (deftest date-bases-test
   (letfn [(read-sheet [file]

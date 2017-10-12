@@ -7,7 +7,9 @@
 (rum/defc first-site-email [state]
   (let [fw "1.1rem"
         align  :center]
-    [:table {:style {:color "#fff"
+    [:table {:style {:margin "2px"
+                     :color "#181818"
+                     :background-color "#fff"
                      :font-size fw
                      :padding-left "15px"
                      :padding-right "15px"
@@ -62,7 +64,8 @@
   (let [fw "1rem"
         fw-small "1rem"]
     [:table {:style
-             {:font-family "'Merriweather', serif"}}
+             {:background-color "#fff"
+              :font-family "'Merriweather', serif"}}
      [:tbody
       [:tr [:td  [:div {:style {:font-size fw
                                 :color "#fff"
@@ -84,6 +87,7 @@
              "Senior Software Engineer"] ]
        [:td [:div {:style {:font-weight 600
                            :font-size fw-small
+                           :color "#282828"
                            :padding "10px"
                            }}
              "Swapno Re-seller based prepaid Billing system"]]]
@@ -126,11 +130,10 @@
                              :color :black
                              :padding "4px"}} "Key responsibilities and challenges"]]
           [:tr [:td {:style {:text-align :left
-                             :background-color "#181818"
                              :padding-top "7px"
                              :borderRadius "3px"
                              :font-size "14px"
-                             :color "#BFBFBF"}}
+                             :color "#181818"}}
                 [:table
                  [:tbody
                   [:tr [:td "➟ Fault tolerant Prepaid Billing"]]
@@ -142,7 +145,8 @@
   (let [fw "1rem"
         fw-small "1rem"]
     [:table {:style
-             {:font-family "'Merriweather', serif"}}
+             {:background-color "#fff"
+              :font-family "'Merriweather', serif"}}
      [:tbody
       [:tr
        [:td [:div {:style {:font-weight 600
@@ -153,6 +157,7 @@
        [:td [:div {:style {:font-weight 600
                            :font-size fw-small
                            :padding "10px"
+                           :color "#181818"
                            }}
              "GP trouble ticketing System ‒ GPTTS"]]]
       [:tr
@@ -167,7 +172,6 @@
                        :font-size fw-small}}
          "Joined Feb 2012"]
         [:div {:style {
-                       :background-color "#87ceeb"
                        :color "#582828"
                        :padding "10px"
                        :font-size fw-small}}
@@ -180,22 +184,15 @@
        [:td
 
         [:table {:style {:padding "10px"
-                         :font-size fw-small
+                         :font-size "14px"
                          :color "#003399"
+                         :text-align :left
                          :background-color "#fff"
                          :box-shadow "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)"}}
          [:tbody
-          [:tr [:td {:style {:text-align :left
-                             :background-color "#181818"
-                             :padding-top "7px"
-                             :borderRadius "3px"
-                             :font-size "14px"
-                             :color "#BFBFBF"}}
-                [:table
-                 [:tbody
-                  [:tr [:td "Real Time Notification System from Network Alarms"]]
-                  [:tr [:td "Multimedia Messaging Systems for Web & Mobile"]]
-                  ]]]]]]]]]]))
+          [:tr [:td "➟ Real Time Notification System from Network Alarms"]]
+          [:tr [:td "➟ Multimedia Messaging Systems for Web & Mobile"]]
+          ]]]]]]))
 
 (rum/defc email-iphone [state]
   [:table {:style
@@ -544,14 +541,7 @@ Finally, We efficiently breaks down complex views into smaller pieces such as te
       [:div "Mercury"]
       [:div "MiniKanren"]]]]])
 
-(rum/defc devops-email [state]
-  [:div "hello"])
 
-(rum/defc iot-email [state]
-  [:div "hello"])
-
-(rum/defc web-ui [state]
-  [:div "hello"])
 
 (rum/defc fullstack-email-body [state]
   [:table {:style {:text-align :left
@@ -720,13 +710,9 @@ Backend." ]]
                      :border-top-color "#bbbbbb"
                      :border-top-style :solid
                      :border-top-width "4px"
-                     :color "#878787"
                      :font-family "'Lucida Grande','Lucida Sans Unicode',Verdana,sans-serif"
                      :font-size "13px"
-                     :padding "20px"
-                     :width "100%"
-
-                     }}
+                     :width "100%"}}
         [:table {:cell-padding "0"
                  :cell-spacing "0"
                  :style {
@@ -736,13 +722,13 @@ Backend." ]]
          [:tbody
           [:tr [:td {:style {:padding "10px"
                              :text-align :left
-                             :background-color "rgb(41, 73, 130)"}}
-                [:div {:style {:font-size "1.1rem"
+                             :background-color "#fff"}}
+                [:div {:style {:font-size "1rem"
                                :padding "4px"}}
-                 "Hello " [:img {:style {:height "21px"}
-                                 :src "http://www.logicaltriangle.com/images/company_logo.png"}]]
+                 "Hello " [:img {:style { :height "17px"}
+                                 :src "https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/993877_1684431745142741_7585817098786273465_n.png?oh=5ff98d67eee2ceeaba4dde2bbb264f7a&oe=5A6F97A1"}]]
                 [:div {:style {:fond-size "1rem"
-                               :color "#f1f1f1"
+                               :color "#181818"
                                :padding-left "5px"
                                :text-align :left}} "Please accept my Résumé for Fullstack developer – iPhone and Android"]]]
 

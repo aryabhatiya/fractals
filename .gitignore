@@ -13,3 +13,4 @@
 figwheel_server.log
 pom.xml
 pom.xml.asc
+/test/clj/dk/ative/docjure/testdata/.~lock.formulae.xlsx#
