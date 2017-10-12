@@ -23,20 +23,6 @@
                  (s/cat :prop string?
                         :val  (s/alt :s string? :b boolean?))))
 
-(test/deftest example-passing-test
-  (test/is (= 1 1))
-  (test/is (s/valid? s [42 11 13 15 {:a 1
-                                     :b 2
-                                     :c 3}
-                        1 2 3 42 43 44 11]))
-  (test/is (=  [11 13 15] (:odds (s/conform s [42 11 13 15 {:a 1
-                                                 :b 2
-                                                 :c 3}
-                                               1 2 3 42 43 44 11]))))
-  (test/is (= (get-in
-               (s/conform ::config ["-server" "foo" "-verbose" true "-user" "joe"])
-               [0 :val 1])
-              "foo")))
 
 (defspec first-element-is-min-after-sorting
   100

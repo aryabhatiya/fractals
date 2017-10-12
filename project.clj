@@ -21,6 +21,8 @@
                  [net.sourceforge.cssparser/cssparser "0.9.23"]
                  [org.mindrot/jbcrypt "0.4"]
                  [clojure.java-time "0.3.0"]
+                 [org.apache.poi/poi "3.16"]
+                 [org.apache.poi/poi-ooxml "3.16"]
                  [com.datomic/datomic-free "0.9.5561.54" :exclusions [com.google.guava/guava]]]
 
   :plugins [[lein-cljsbuild "1.1.6"]
